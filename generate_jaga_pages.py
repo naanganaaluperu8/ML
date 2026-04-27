@@ -47,15 +47,21 @@ html_template = """<!doctype html>
 """
 
 for filename, out_html, title in jaga_files:
-    # Handle the duplicate filenames like "A_star (1).py" if the base one is missing
-    target_file = os.path.join("Jaga_code", filename)
-    if not os.path.exists(target_file):
-        base, ext = os.path.splitext(filename)
-        alt_file = os.path.join("Jaga_code", f"{base} (1){ext}")
-        if os.path.exists(alt_file):
-            target_file = alt_file
+    # Choose the file that actually has content
+    target_file = None
+    base_file = os.path.join("Jaga_code", filename)
+    base, ext = os.path.splitext(filename)
+    alt_file = os.path.join("Jaga_code", f"{base} (1){ext}")
     
-    if os.path.exists(target_file):
+    # Check alternate file first since it usually has the content
+    if os.path.exists(alt_file) and os.path.getsize(alt_file) > 0:
+        target_file = alt_file
+    elif os.path.exists(base_file) and os.path.getsize(base_file) > 0:
+        target_file = base_file
+    elif os.path.exists(base_file):
+        target_file = base_file # fallback to empty if nothing else
+    
+    if target_file and os.path.exists(target_file):
         with open(target_file, "r", encoding="utf-8") as f:
             code = f.read()
             # Escape HTML characters so they render correctly in the code block
@@ -63,9 +69,9 @@ for filename, out_html, title in jaga_files:
             
         with open(out_html, "w", encoding="utf-8") as f:
             f.write(html_template.format(title=title, filename=filename, code_content=code))
-        print(f"Created {out_html}")
+        print(f"Created {out_html} from {target_file}")
     else:
-        print(f"Could not find {filename}")
+        print(f"Could not find valid file for {filename}")
 
 # Generate jaga.html
 jaga_index_template = """<!doctype html>

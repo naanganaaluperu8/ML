@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To implement a Python program to classify 20 Newsgroups dataset using the Multilayer Perceptron model and evaluate its performance using accuracy, precision, and recall</title>
     <link rel="stylesheet" href="style.css" />
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -30,7 +32,7 @@
         </ol>
         <h3>PROGRAM</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>import numpy as np
+        <pre><code class="language-python">import numpy as np
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
@@ -177,5 +179,8 @@ weighted avg       0.92      0.92      0.92       888</pre>
         <a href="exp11.html">Next</a>
       </nav>
     </main>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
 </html>

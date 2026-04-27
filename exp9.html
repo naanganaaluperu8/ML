@@ -8,6 +8,8 @@
       its performance
     </title>
     <link rel="stylesheet" href="style.css" />
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -66,7 +68,7 @@
         </ol>
         <h3>PROGRAM</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>import pandas as pd
+        <pre><code class="language-python">import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
@@ -156,5 +158,8 @@ weighted avg 0.71 0.72 0.71 192</pre
         <a href="exp10.html">Next</a>
       </nav>
     </main>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
 </html>

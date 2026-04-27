@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import mean_squared_error, r2_score
+from xgboost import XGBRegressor
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv("car data.csv")
+
+# Preprocessing
+df.drop("Car_Name", axis=1, inplace=True)
+df["Car_Age"] = 2026 - df["Year"]
+df.drop("Year", axis=1, inplace=True)
+
+# Encode categorical columns
+le = LabelEncoder()
+for col in ["Fuel_Type", "Seller_Type", "Transmission"]:
+    df[col] = le.fit_transform(df[col])
+
+# Split data
+X = df.drop("Selling_Price", axis=1)
+y = df["Selling_Price"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model
+model = XGBRegressor()
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluation
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2 = r2_score(y_test, y_pred)
+
+print("RMSE:", rmse)
+print("R2 Score:", r2)
+
+# Graph (important)
+plt.scatter(y_test, y_pred)
+plt.plot([y_test.min(), y_test.max()],
+         [y_test.min(), y_test.max()], 'r--')
+plt.xlabel("Actual Price")
+plt.ylabel("Predicted Price")
+plt.title("Actual vs Predicted Prices")
+plt.show()

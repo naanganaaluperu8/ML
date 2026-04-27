@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Experiment 1</title>
     <link rel="stylesheet" href="style.css" />
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -55,7 +57,7 @@
         </ol>
         <h3>SOURCE CODE</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>board = [' '] * 9
+        <pre><code class="language-python">board = [' '] * 9
 def print_board():
     print()
     for i in range(9):
@@ -207,5 +209,8 @@ winner: 0</pre
         <a href="exp2.html">Next</a>
       </nav>
     </main>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
 </html>

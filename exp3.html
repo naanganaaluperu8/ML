@@ -8,6 +8,8 @@
       environment
     </title>
     <link rel="stylesheet" href="style.css" />
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -42,7 +44,7 @@
         </ol>
         <h3>PROGRAM</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>def astar(graph,h,start,goal):
+        <pre><code class="language-python">def astar(graph,h,start,goal):
     open_list = [start]
     g = {start:0}
     parent = {start:None}
@@ -83,7 +85,6 @@ h = {
 start = 'A'
 goal = 'D'
 path,cost = astar(graph,h,start,goal)
-
 print("Path",path)
 print("Cost",cost)</code></pre>
         <h3>OUTPUT</h3>
@@ -103,5 +104,8 @@ Cost: 2</pre
         <a href="exp4.html">Next</a>
       </nav>
     </main>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
 </html>

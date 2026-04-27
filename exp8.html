@@ -1,109 +1,167 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      To implement Naive Bayes classifier for the Iris dataset and evaluate its
-      performance
-    </title>
-    <link rel="stylesheet" href="style.css" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    To implement Naive Bayes classifier for the Iris dataset and evaluate its
+    performance
+  </title>
+  <link rel="stylesheet" href="style.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
-  <body>
-    <header>
-      <h1>
-        To implement Naive Bayes classifier for the Iris dataset and evaluate
-        its performance
-      </h1>
-    </header>
-    <main>
-      <div class="experiment-content">
-        <h2>AIM</h2>
-        <p>
-          To implement a Python program to classify Iris flower species using
-          the Naive Bayes algorithm and evaluate its performance.
-        </p>
-        <h3>PROGRAM DESCRIPTION</h3>
-        <p>
-          Naive Bayes is a supervised machine learning algorithm based on Bayes'
-          Theorem and is widely used for classification tasks. It assumes that
-          all input features are independent, which makes the method simple and
-          efficient. Bayes' Theorem is given by P(C|X) = [P(X|C) * P(C)] / P(X)
-          where P(C|X) is Posterior probability, P(X|C) is Likelihood, P(C) is
-          Prior probability, P(X) is Evidence. Gaussian Naive Bayes is used,
-          which assumes that the features follow a normal distribution. The
-          model is trained using the fit() function and predictions are made
-          using the predict() function. The performance is evaluated using
-          accuracy score and classification report.
-        </p>
-        <h3>ALGORITHM</h3>
-        <ol>
-          <li>Start.</li>
-          <li>
-            Import the required Python libraries for data handling,
-            visualization, and machine learning.
-          </li>
-          <li>Load the Iris dataset from sklearn.datasets.</li>
-          <li>
-            Convert the dataset into a pandas DataFrame for easier analysis.
-          </li>
-          <li>
-            Separate the dataset into input features (X) and target variable (y)
-            representing flower species.
-          </li>
-          <li>
-            Split the dataset into training data (70%) and testing data (30%).
-          </li>
-          <li>Import the Gaussian Naive Bayes classifier.</li>
-          <li>Initialize the Naive Bayes model.</li>
-          <li>Train the model using the training dataset.</li>
-          <li>Visualize feature relationships using a pair plot.</li>
-          <li>Predict the class labels using the testing dataset.</li>
-          <li>
-            Evaluate the model performance using Accuracy Score and
-            Classification Report.
-          </li>
-          <li>Predict the species for a new sample input.</li>
-          <li>Display the results and graphs.</li>
-          <li>Stop.</li>
-        </ol>
-        <h3>PROGRAM</h3>
-        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>import pandas as pd
+
+<body>
+  <header>
+    <h1>
+      To implement Naive Bayes classifier for the Iris dataset and evaluate
+      its performance
+    </h1>
+  </header>
+  <main>
+    <div class="experiment-content">
+      <h2>AIM</h2>
+      <p>
+        To implement a Python program to classify Iris flower species using
+        the Naive Bayes algorithm and evaluate its performance.
+      </p>
+      <h3>PROGRAM DESCRIPTION</h3>
+      <p>
+        Naive Bayes is a supervised machine learning algorithm based on Bayes'
+        Theorem and is widely used for classification tasks. It assumes that
+        all input features are independent, which makes the method simple and
+        efficient. Bayes' Theorem is given by P(C|X) = [P(X|C) * P(C)] / P(X)
+        where P(C|X) is Posterior probability, P(X|C) is Likelihood, P(C) is
+        Prior probability, P(X) is Evidence. Gaussian Naive Bayes is used,
+        which assumes that the features follow a normal distribution. The
+        model is trained using the fit() function and predictions are made
+        using the predict() function. The performance is evaluated using
+        accuracy score and classification report.
+      </p>
+      <h3>ALGORITHM</h3>
+      <ol>
+        <li>Start.</li>
+        <li>
+          Import the required Python libraries for data handling,
+          visualization, and machine learning.
+        </li>
+        <li>Load the Iris dataset from sklearn.datasets.</li>
+        <li>
+          Convert the dataset into a pandas DataFrame for easier analysis.
+        </li>
+        <li>
+          Separate the dataset into input features (X) and target variable (y)
+          representing flower species.
+        </li>
+        <li>
+          Split the dataset into training data (70%) and testing data (30%).
+        </li>
+        <li>Import the Gaussian Naive Bayes classifier.</li>
+        <li>Initialize the Naive Bayes model.</li>
+        <li>Train the model using the training dataset.</li>
+        <li>Visualize feature relationships using a pair plot.</li>
+        <li>Predict the class labels using the testing dataset.</li>
+        <li>
+          Evaluate the model performance using Accuracy Score and
+          Classification Report.
+        </li>
+        <li>Predict the species for a new sample input.</li>
+        <li>Display the results and graphs.</li>
+        <li>Stop.</li>
+      </ol>
+      <h3>PROGRAM</h3>
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre><code class="language-python"># -----------------------------
+# 1. Import Libraries
+# -----------------------------
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report
 
+
+# -----------------------------
+# 2. Load Dataset
+# -----------------------------
 iris = datasets.load_iris()
+
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df['species'] = [iris.target_names[i] for i in iris.target]
+df["species"] = [iris.target_names[i] for i in iris.target]
 
-print("First five rows of the Iris dataset:")
+print("First five rows of the Iris dataset:\n")
 print(df.head())
-X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3, random_state=42)
 
+
+# -----------------------------
+# 3. Train-Test Split
+# -----------------------------
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data,
+    iris.target,
+    test_size=0.3,
+    random_state=42
+)
+
+
+# -----------------------------
+# 4. Train Model
+# -----------------------------
 model = GaussianNB()
 model.fit(X_train, y_train)
 
+
+# -----------------------------
+# 5. Simple Visualization
+# -----------------------------
 sns.set_style("whitegrid")
-sns.pairplot(df, hue="species", palette="viridis", markers=["o", "s", "D"])
-plt.suptitle("Feature Relationships by Species", y=1.02)
+
+# Instead of pairplot (which is heavy),
+# use a simple scatter plot for clarity
+plt.figure(figsize=(6, 4))
+
+sns.scatterplot(
+    x=df["sepal length (cm)"],
+    y=df["sepal width (cm)"],
+    hue=df["species"],
+    palette="viridis"
+)
+
+plt.title("Sepal Length vs Width by Species")
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.legend(title="Species")
+
+plt.tight_layout()
 plt.show()
 
+
+# -----------------------------
+# 6. Predictions & Evaluation
+# -----------------------------
 y_pred = model.predict(X_test)
 
-print(f"Model Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+print(f"\nModel Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred, target_names=iris.target_names))
 
+
+# -----------------------------
+# 7. Test with New Sample
+# -----------------------------
 new_sample = [[5.1, 3.5, 1.4, 0.2]]
+
 prediction = model.predict(new_sample)
-print(f"Predicted Class for sample {new_sample}: {iris.target_names[prediction][0]}")</code></pre>
-        <h3>SAMPLE INPUT AND OUTPUT</h3>
-        <pre>
+
+print(f"\nPredicted Class for sample {new_sample}: {iris.target_names[prediction][0]}")</code></pre>
+      <h3>SAMPLE INPUT AND OUTPUT</h3>
+      <pre>
 First five rows of the Iris dataset:
 sepal length (cm) sepal width (cm) petal length (cm) petal width (cm)
 0 5.1 3.5 1.4 0.2
@@ -131,19 +189,22 @@ accuracy 0.98 45
 macro avg 0.98 0.97 0.97 45
 weighted avg 0.98 0.98 0.98 45
 
-Predicted Class for sample [[5.1, 3.5, 1.4, 0.2]]: setosa</pre
-        >
-        <h3>RESULT</h3>
-        <p>
-          The Python program for predicting house prices using the Linear
-          Regression algorithm was successfully executed.
-        </p>
-      </div>
-      <nav class="navigation">
-        <a href="exp7.html">Previous</a>
-        <a href="index.html" class="back-button">Back to Home</a>
-        <a href="exp9.html">Next</a>
-      </nav>
-    </main>
+Predicted Class for sample [[5.1, 3.5, 1.4, 0.2]]: setosa</pre>
+      <h3>RESULT</h3>
+      <p>
+        The Python program for predicting house prices using the Linear
+        Regression algorithm was successfully executed.
+      </p>
+    </div>
+    <nav class="navigation">
+      <a href="exp7.html">Previous</a>
+      <a href="index.html" class="back-button">Back to Home</a>
+      <a href="exp9.html">Next</a>
+    </nav>
+  </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
+
 </html>

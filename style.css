@@ -1,102 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary: #10b981;
+  --secondary-hover: #059669;
+  --border-color: #334155;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
 header {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
   color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 3rem 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+header input[type="text"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+header input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+header input[type="text"]:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
 
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem;
+}
+
+.profiles-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.profile-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  width: 300px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px);
+  background-color: var(--card-hover);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card:hover::before {
+  opacity: 1;
+}
+
+.profile-card h2 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(to right, #60a5fa, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile-card p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 1rem;
 }
 
 .experiments-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
 }
 
 .experiment-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  transition: transform 0.2s;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .experiment-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
 .experiment-card h2 {
-  margin-top: 0;
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
 }
 
 .experiment-card a {
   text-decoration: none;
-  color: #007bff;
+  color: var(--primary);
+  transition: color 0.2s;
 }
 
 .experiment-card a:hover {
+  color: #60a5fa;
   text-decoration: underline;
 }
 
+.experiment-card p {
+  color: #94a3b8;
+  margin: 0;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
 .copy-btn {
-  background-color: #007bff;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .copy-btn:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-hover);
 }
 
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .navigation a {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .navigation a:hover {
-  background-color: #0056b3;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
 }
 
 .navigation .back-button {
-  background-color: #28a745;
+  background-color: transparent;
 }
 
 .navigation .back-button:hover {
-  background-color: #218838;
+  background-color: var(--secondary);
+  border-color: var(--secondary);
 }
 
 .experiment-content {
-  line-height: 1.6;
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.experiment-content h1,
+.experiment-content h1 {
+  font-size: 2rem;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
 .experiment-content h2,
 .experiment-content h3 {
-  color: #007bff;
+  color: var(--primary);
+  margin-top: 2rem;
+}
+
+/* Prism overrides for better integration */
+pre[class*="language-"] {
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+code[class*="language-"] {
+  font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.95rem;
+}
+
+/* Make lists nice */
+.experiment-content ol, .experiment-content ul {
+  color: #cbd5e1;
+  padding-left: 1.5rem;
+}
+
+.experiment-content li {
+  margin-bottom: 0.5rem;
+}
+
+.experiment-content p {
+  color: #cbd5e1;
 }

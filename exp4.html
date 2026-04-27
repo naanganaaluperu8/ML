@@ -8,6 +8,8 @@
       Water Jug Problem
     </title>
     <link rel="stylesheet" href="style.css" />
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -42,7 +44,7 @@
         </ol>
         <h3>PROGRAM (BFS)</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code>from collections import deque
+        <pre><code class="language-python">from collections import deque
 def bfs(a, b, target):
     visited = set()
     q = deque([(0, 0)])
@@ -77,7 +79,7 @@ print(bfs(4, 3, 2))</code></pre>
 Target Reached</pre
         >
         <h3>PROGRAM (DFS)</h3>
-        <pre><code>def dfs(x, y, a, b, target, visited):
+        <pre><code class="language-python">def dfs(x, y, a, b, target, visited):
     if (x, y) in visited:
         return False
     print((x, y))
@@ -115,5 +117,8 @@ True</pre
         <a href="exp5.html">Next</a>
       </nav>
     </main>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      To implement an efficient Multilayer Perceptron model using TF-IDF and SVD.
+    </title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        To implement an efficient Multilayer Perceptron model using TF-IDF and SVD.
+      </h1>
+    </header>
+    <main>
+      <div class="experiment-content">
+        <h2>AIM</h2>
+        <p>
+          To implement an efficient Multilayer Perceptron (MLP) model for classifying the 20 Newsgroups dataset using TF-IDF vectorization and TruncatedSVD for dimensionality reduction.
+        </p>
+        <h3>ALGORITHM</h3>
+        <ol>
+          <li>Import necessary libraries.</li>
+          <li>Load the 20 Newsgroups dataset.</li>
+          <li>Apply TF-IDF vectorization with limited features (e.g., max_features=5000).</li>
+          <li>Perform dimensionality reduction using TruncatedSVD.</li>
+          <li>Visualize the 2D SVD transformed data.</li>
+          <li>Split the vectorized data into training and testing sets.</li>
+          <li>Train the MLPClassifier model.</li>
+          <li>Predict on the test set.</li>
+          <li>Evaluate the model using accuracy score, classification report, and confusion matrix.</li>
+          <li>Display the confusion matrix heatmap.</li>
+        </ol>
+        <h3>SOURCE CODE</h3>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-python">from sklearn.datasets import fetch_20newsgroups
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+print("Step 1: Loading dataset...")
+data = fetch_20newsgroups()
+
+x = data.data
+y = data.target
+print("Step 2: Data ready")
+
+# ✅ Limit features (VERY IMPORTANT)
+print("Step 3: TF-IDF vectorization...")
+vectorizer = TfidfVectorizer(max_features=5000)
+x_vec = vectorizer.fit_transform(x)
+print("TF-IDF done")
+
+# ✅ Use TruncatedSVD instead of PCA (works with sparse)
+print("Step 4: Dimensionality reduction...")
+svd = TruncatedSVD(n_components=2)
+x_svd = svd.fit_transform(x_vec)
+print("SVD done")
+
+# Visualization
+plt.scatter(x_svd[:,0], x_svd[:,1])
+plt.title("2D Visualization (SVD)")
+plt.show()
+
+# ✅ Split vectorized data
+print("Step 5: Splitting data...")
+x_train, x_test, y_train, y_test = train_test_split(
+    x_vec, y, test_size=0.2, random_state=42
+)
+
+# ✅ Train model with progress
+print("Step 6: Training model...")
+model = MLPClassifier(max_iter=100, verbose=True)
+model.fit(x_train, y_train)
+
+# Predict
+print("Step 7: Predicting...")
+y_pred = model.predict(x_test)
+
+# Evaluation
+print("Step 8: Evaluating...")
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt='d')
+plt.title("Confusion Matrix")
+plt.show()
+
+print("✅ Completed successfully")</code></pre>
+        <h3>OUTPUT</h3>
+        <pre>
+Step 1: Loading dataset...
+Step 2: Data ready
+Step 3: TF-IDF vectorization...
+TF-IDF done
+Step 4: Dimensionality reduction...
+SVD done
+Step 5: Splitting data...
+Step 6: Training model...
+Iteration 1, loss = ...
+...
+Step 7: Predicting...
+Step 8: Evaluating...
+Accuracy: ...
+
+Classification Report:
+...
+✅ Completed successfully
+[Plots generated: 2D Visualization (SVD), Confusion Matrix]</pre>
+        <h3>RESULT</h3>
+        <p>
+          The efficient Multilayer Perceptron model was successfully implemented and evaluated on the 20 Newsgroups dataset using TF-IDF and SVD.
+        </p>
+      </div>
+      <nav class="navigation">
+        <a href="exp11.html">Previous</a>
+        <a href="index.html" class="back-button">Back to Home</a>
+        <span></span>
+      </nav>
+    </main>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  </body>
+</html>

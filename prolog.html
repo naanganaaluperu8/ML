@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prolog Experiments</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>Prolog Experiments</h1>
+    </header>
+    <main>
+      <div class="experiment-content">
+        <h2>1. PROLOG TERMS AND SIMPLE COMMANDS</h2>
+        <h3>AIM</h3>
+        <p>To learn about Prolog terms and practice simple commands.</p>
+        
+        <h3>PROLOG TERMS</h3>
+        <ol>
+          <li><b>Atoms:</b> A sequence of characters of upper-case letters, lower-case letters, digits, or underscore, starting with a lowercase letter. Examples: butch, big_kahuna_burger, playGuitar</li>
+          <li><b>Variables:</b> A sequence of characters of uppercase letters, lower-case letters, digits, or underscore, starting with either an uppercase letter or an underscore. Examples: X, Y, Variable, Vincent, _tag</li>
+          <li><b>Complex Terms:</b> Atoms, numbers and variables are building blocks for complex terms. Complex terms are built out of a functor directly followed by sequential arguments. Arguments are put in round brackets, separated by commas. The functor must be an atom.<br>
+          Examples:<br>
+          – playsAirGuitar(jody)<br>
+          – loves(vincent, mia)<br>
+          – jealous(marsellus, W)<br>
+          Complex terms inside complex terms:<br>
+          – hide(X,father(father(father(butch))))</li>
+          <li><b>Arity:</b> The number of arguments a complex term has is called its arity.<br>
+          Examples:<br>
+          woman(mia) is a term with arity 1<br>
+          loves(vincent,mia) has arity 2<br>
+          father(father(butch)) arity 1<br>
+          You can define two predicates with the same functor but with different arity. Prolog would treat this as two different predicates.</li>
+        </ol>
+
+        <h3>EXERCISE 1: Knowledge Base 1</h3>
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">woman(mia).
+woman(jody).
+woman(yolanda).
+playsAirGuitar(jody).
+party.</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>?- woman(mia).
+true.
+?- playsAirGuitar(jody).
+true.
+?- playsAirGuitar(mia).
+false.
+?- tattoed(jody).
+ERROR: predicate tattoed/1 false.t defined.
+?- party.
+true.
+?- rockConcert.
+False.</code></pre>
+
+        <h3>Knowledge Base 2</h3>
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">happy(yolanda). %fact 
+listens2music(mia).
+listens2music(yolanda) :- happy(yolanda). %rule 
+playsAirGuitar(mia) :- listens2music(mia).
+playsAirGuitar(yolanda) :- listens2music(yolanda). %head :- Body</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>?- playsAirGuitar(mia).
+true.
+?- playsAirGuitar(yolanda).
+true.</code></pre>
+
+        <h3>Knowledge Base 3</h3>
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">happy(vincent).
+listens2music(butch).
+playsAirGuitar(vincent) :- listens2music(vincent), happy(vincent).
+playsAirGuitar(butch) :- happy(butch).
+playsAirGuitar(butch) :- listens2music(butch).
+playsAirGuitar(butch) :- happy(butch); listens2music(butch).</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>?- playsAirGuitar(butch).
+true.</code></pre>
+
+        <h3>Knowledge Base 4</h3>
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">woman(mia).
+woman(jody).
+woman(yolanda).
+loves(vincent, mia).
+loves(marsellus, mia).
+loves(pumpkin, honey_bunny).
+loves(honey_bunny, pumpkin).</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>?- woman(X).
+X=mia;
+X=jody;
+X=yolanda.
+?- loves(marsellus,X), woman(X).
+X=mia.
+?- loves(pumpkin,X), woman(X).
+False.</code></pre>
+
+        <h3>RESULT</h3>
+        <p>Thus Prolog simple and complex terms were learnt and executed successfully.</p>
+        
+        <hr style="margin: 2rem 0; border: 1px solid #333;" />
+
+        <h2>2. IMPLEMENTATION OF FAMILY TREE PROBLEM</h2>
+        <h3>AIM</h3>
+        <p>To represent the family tree using Prolog and execute queries.</p>
+        <h3>SOURCE CODE</h3>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">%male
+male(james1).
+male(james2).
+male(charles1).
+male(charles2).
+male(george1).
+
+%female
+female(catherine).
+female(elizabeth).
+female(sophia).
+
+%parent
+parent(charles1,james1).
+parent(elizabeth,james1).
+parent(charles2,charles1).
+parent(james2,charles1).
+parent(catherine,charles1).
+parent(sophia,elizabeth).
+parent(george1,sophia).
+
+%sibling
+sibling(catherine,charles2) :- parent(catherine,charles1), parent(charles2,charles1).</code></pre>
+        <h3>QUERIES AND OUTPUT</h3>
+        <pre><code>?- parent(charles1, george1).
+false.
+
+?- parent(charles1, Parent).
+Parent = james1.
+
+?- parent(Child, charles1).
+Child = charles2 ;
+Child = james2 ;
+Child = catherine.</code></pre>
+
+        <h3>RESULT</h3>
+        <p>Thus the given family tree was implemented in Prolog and the queries were executed successfully.</p>
+
+        <hr style="margin: 2rem 0; border: 1px solid #333;" />
+
+        <h2>3. BACKWARD CHAINING</h2>
+        <h3>AIM</h3>
+        <p>To use Backward Chaining to solve the given the problem in Prolog.</p>
+        
+        <h3>KNOWLEDGE BASE - 1</h3>
+        <p>Marcus is a man. Marcus is a Pompeian. All Pompeians are Romans. Caesar is a ruler. Marcus tried to assassinate Caesar. People only try to assassinate rulers they are not loyal to.</p>
+        <p>Find: Is Marcus loyal to Caesar or not?</p>
+        
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">man(marcus).
+pompian(marcus).
+Roman(X) :- pompian(X).
+ruler(caesar).
+assasinate(marcus,caesar).
+notloyalto(X,Y) :- man(X), ruler(Y), assasinate(X,Y).</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>?- notloyalto(X,Y).
+X = marcus, Y = caesar.
+
+?- trace.
+true.
+[trace]
+
+?- notloyalto(X,Y).
+Call: (8) notloyalto(_7698, _7700) ? creep
+Call: (9) man(_7698) ? creep
+Exit: (9) man(marcus) ? creep
+Call: (9) ruler(_7700) ? creep
+Exit: (9) ruler(caesar) ? creep
+Call: (9) assasinate(marcus, caesar) ? creep
+Exit: (9) assasinate(marcus, caesar) ? creep
+Exit: (8) notloyalto(marcus, caesar) ? creep
+X = marcus, Y = caesar.</code></pre>
+
+        <h3>KNOWLEDGE BASE - 2</h3>
+        <p>Apple is a food. Chicken is a food. John eats all kinds of food. Peanut is a food. Anything anyone eats and is alive is a food. John is alive.</p>
+        <p>Find: Does John eats peanuts?</p>
+        
+        <h4>SOURCE CODE</h4>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code class="language-prolog">alive(john).
+food(apple).
+food(chicken).
+food(peanuts).
+eats(john,X) :- food(X).
+food(X) :- eats(Y,X), alive(Y).</code></pre>
+        <h4>QUERIES AND OUTPUT</h4>
+        <pre><code>[trace]
+?- eats(john,peanuts).
+Call: (8) eats(john, peanuts) ? creep
+Call: (9) food(peanuts) ? creep
+Exit: (9) food(peanuts) ? creep
+Exit: (8) eats(john, peanuts) ? creep
+True.</code></pre>
+
+        <h3>RESULT</h3>
+        <p>The given knowledge bases were traced using Backward Chaining successfully.</p>
+        
+      </div>
+      <nav class="navigation">
+        <a href="exp12.html">Previous</a>
+        <a href="kabilesh.html" class="back-button">Back to Profiles</a>
+        <span></span>
+      </nav>
+    </main>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-prolog.min.js"></script>
+  </body>
+</html>

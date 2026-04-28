@@ -19,7 +19,7 @@ html_template = """<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaga - {title}</title>
+    <title>2 - {title}</title>
     <link rel="stylesheet" href="style.css" />
     <!-- PrismJS Dark Theme -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -28,7 +28,7 @@ html_template = """<!doctype html>
     <header>
       <h1>{title}</h1>
       <div style="margin-top: 1rem;">
-        <a href="jaga.html" class="copy-btn" style="text-decoration: none;">&larr; Back to Jaga's Repository</a>
+        <a href="jaga.html" class="copy-btn" style="text-decoration: none;">&larr; Back to 2's Repository</a>
       </div>
     </header>
     <main>
@@ -79,12 +79,12 @@ jaga_index_template = """<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaga Profile - Code</title>
+    <title>2 Profile - Code</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>Jaga's Repository</h1>
+      <h1>2's Repository</h1>
       <p>Explore code implementations</p>
       <input type="text" id="search" placeholder="Search files..." />
       <div style="margin-top: 1rem;">

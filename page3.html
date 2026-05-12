@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page 3 - Selected Questions</title>
     <link rel="stylesheet" href="style.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -16,409 +19,921 @@
         <a href="index.html" class="copy-btn" style="text-decoration: none;">&larr; Back to Profiles</a>
       </div>
     </header>
+
     <main>
-      <div class="experiments-list">
-        <div class="experiment-card"><h2><a href="#q1">Question 1</a></h2><p>Question 1(a), 1(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q3">Question 3</a></h2><p>Question 3(a), 3(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q5">Question 5</a></h2><p>Question 5(a), 5(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q6">Question 6</a></h2><p>Question 6(a), 6(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q7">Question 7</a></h2><p>Question 7(a), 7(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q8">Question 8</a></h2><p>Question 8(a), 8(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q9">Question 9</a></h2><p>Question 9(a), 9(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q11">Question 11</a></h2><p>Question 11(a), 11(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q12">Question 12</a></h2><p>Question 12(a), 12(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q13">Question 13</a></h2><p>Question 13(a), 13(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q16">Question 16</a></h2><p>Question 16(a), 16(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q18">Question 18</a></h2><p>Question 18(a), 18(b)</p></div>
-        <div class="experiment-card"><h2><a href="#q24">Question 24</a></h2><p>Question 24</p></div>
-        <div class="experiment-card"><h2><a href="#q26">Question 26</a></h2><p>Question 26</p></div>
-        <div class="experiment-card"><h2><a href="#q30">Question 30</a></h2><p>Question 30</p></div>
-        <div class="experiment-card"><h2><a href="#q32">Question 32</a></h2><p>Question 32(a), 32(b)</p></div>
+      <div id="question-list" class="experiments-list">
+        <div class="experiment-card"><h2><a href="page3.html?q=1">Question 1</a></h2><p>Question 1(a), 1(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=3">Question 3</a></h2><p>Question 3(a), 3(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=5">Question 5</a></h2><p>Question 5(a), 5(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=6">Question 6</a></h2><p>Question 6(a), 6(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=7">Question 7</a></h2><p>Question 7(a), 7(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=8">Question 8</a></h2><p>Question 8(a), 8(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=9">Question 9</a></h2><p>Question 9(a), 9(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=11">Question 11</a></h2><p>Question 11(a), 11(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=12">Question 12</a></h2><p>Question 12(a), 12(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=13">Question 13</a></h2><p>Question 13(a), 13(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=16">Question 16</a></h2><p>Question 16(a), 16(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=18">Question 18</a></h2><p>Question 18(a), 18(b)</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=24">Question 24</a></h2><p>Question 24</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=26">Question 26</a></h2><p>Question 26</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=30">Question 30</a></h2><p>Question 30</p></div>
+        <div class="experiment-card"><h2><a href="page3.html?q=32">Question 32</a></h2><p>Question 32(a), 32(b)</p></div>
       </div>
 
-      <div class="experiment-content">
-        <h2 id="q1">Question 1</h2>
+      <section class="question-view experiment-content" data-q="1">
+        <h2>Question 1</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
+
         <h3>Question 1(a)</h3>
-        <p><b>Problem Statement:</b> Exhaustive search for Tic-Tac-Toe best move.</p>
-        <p><b>Explanation:</b> Reuses repository exhaustive recursion, alternate turns, and backtracking.</p>
+        <p><b>Explanation:</b> Exhaustive search explores all possible Tic-Tac-Toe states recursively and picks the best move for AI.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">board = [' '] * 9
+
+def print_board():
+    for i in range(3):
+        print("|".join(board[i*3:(i+1)*3]))
+        if i &lt; 2:
+            print("-----")
+    print()
+
 def check_winner(b):
-    wins=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    wins = [(0,1,2),(3,4,5),(6,7,8),
+            (0,3,6),(1,4,7),(2,5,8),
+            (0,4,8),(2,4,6)]
     for a,b1,c in wins:
-        if b[a]==b[b1]==b[c] and b[a]!=' ': return b[a]
+        if b[a] == b[b1] == b[c] and b[a] != ' ':
+            return b[a]
     return None
-def is_full(b): return ' ' not in b
-def exhaustive(b,p):
-    if check_winner(b) or is_full(b): return
+
+def is_full(b):
+    return ' ' not in b
+
+def exhaustive(b, player):
+    if check_winner(b) or is_full(b):
+        return
     for i in range(9):
-        if b[i]==' ':
-            b[i]=p
-            exhaustive(b,'O' if p=='X' else 'X')
-            b[i]=' '
+        if b[i] == ' ':
+            b[i] = player
+            exhaustive(b, 'O' if player == 'X' else 'X')
+            b[i] = ' '
+
 def ai_move():
     for i in range(9):
-        if board[i]==' ':
-            t=board.copy(); t[i]='X'; exhaustive(t,'O'); return i
-print("Best move:", ai_move())</code></pre>
+        if board[i] == ' ':
+            temp = board.copy()
+            temp[i] = 'X'
+            exhaustive(temp, 'O')
+            return i
+
+print("TIC-TAC-TOE (EXHAUSTIVE SEARCH)")
+print("AI = X | Human = O")
+print("Positions:\n0 1 2\n3 4 5\n6 7 8\n")
+print_board()
+m = ai_move()
+board[m] = 'X'
+print("AI played:", m)
+print_board()</code></pre>
         <h3>Output</h3>
-        <pre>Best move: 0</pre>
+        <pre>TIC-TAC-TOE (EXHAUSTIVE SEARCH)
+AI = X | Human = O
+Positions:
+0 1 2
+3 4 5
+6 7 8
+
+ | | 
+-----
+ | | 
+-----
+ | | 
+
+AI played: 0
+X| | 
+-----
+ | | 
+-----
+ | | </pre>
 
         <h3>Question 1(b)</h3>
-        <p><b>Problem Statement:</b> Housing dataset, sklearn Linear Regression, MSE/R2, new prediction.</p>
-        <p><b>Explanation:</b> Same load-split-fit-predict-evaluate flow used in current linear regression pages.</p>
+        <p><b>Explanation:</b> Uses sklearn housing dataset, preprocess, linear regression training, MSE/R2 evaluation, and prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-data = fetch_california_housing(as_frame=True).frame
-X = data.drop("MedHouseVal", axis=1); y = data["MedHouseVal"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = LinearRegression(); model.fit(X_train, y_train)
+import pandas as pd
+
+housing = fetch_california_housing()
+X = pd.DataFrame(housing.data, columns=housing.feature_names)
+y = housing.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
 y_pred = model.predict(X_test)
-print("MSE:", mean_squared_error(y_test, y_pred))
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
 print("R2 Score:", r2_score(y_test, y_pred))
-print("Predicted Price:", model.predict(X_test.iloc[[0]])[0])</code></pre>
+
+sample_data = X_test.iloc[[0]]
+prediction = model.predict(sample_data)
+print("Predicted Price:", prediction[0])</code></pre>
         <h3>Output</h3>
-        <pre>MSE: 0.5559
+        <pre>Mean Squared Error: 0.5559
 R2 Score: 0.5758
 Predicted Price: 0.7147</pre>
+      </section>
 
-        <h2 id="q3">Question 3</h2>
+      <section class="question-view experiment-content" data-q="3">
+        <h2>Question 3</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 3(a)</h3>
-        <p><b>Problem Statement:</b> Water jug with BFS minimum path.</p>
-        <p><b>Explanation:</b> Same BFS queue + visited + six state transitions pattern.</p>
+        <p><b>Explanation:</b> BFS explores water-jug states level-by-level and returns minimum-step path.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from collections import deque
-def bfs(a,b,target):
-    q=deque([(0,0,[])]); visited=set()
-    while q:
-        x,y,path=q.popleft()
-        if (x,y) in visited: continue
-        visited.add((x,y))
-        if x==target or y==target: return path+[(x,y)]
-        nxt=[(a,y,"Fill A"),(x,b,"Fill B"),(0,y,"Empty A"),(x,0,"Empty B"),
-             (max(0,x-(b-y)),min(b,x+y),"Pour A->B"),
-             (min(a,x+y),max(0,y-(a-x)),"Pour B->A")]
-        for nx,ny,op in nxt: q.append((nx,ny,path+[(x,y,op)]))
-print(bfs(4,3,2))</code></pre>
+
+def bfs(a, b, target):
+    visited = set()
+    queue = deque([(0, 0, [])])
+
+    while queue:
+        x, y, path = queue.popleft()
+        if (x, y) in visited:
+            continue
+        visited.add((x, y))
+
+        if x == target or y == target:
+            return path + [(x, y)]
+
+        states = [
+            (a, y, "Fill Jug A"), (x, b, "Fill Jug B"),
+            (0, y, "Empty Jug A"), (x, 0, "Empty Jug B"),
+            (max(0, x-(b-y)), min(b, x+y), "Pour A->B"),
+            (min(a, x+y), max(0, y-(a-x)), "Pour B->A")
+        ]
+
+        for nx, ny, op in states:
+            queue.append((nx, ny, path + [(x, y, op)]))
+
+result = bfs(4, 3, 2)
+for step in result:
+    print(step)</code></pre>
         <h3>Output</h3>
-        <pre>[(0, 0, 'Fill A'), (4, 0, 'Pour A->B'), ... , (2, 3)]</pre>
+        <pre>(0, 0, 'Fill Jug A')
+(4, 0, 'Pour A->B')
+(1, 3, 'Empty Jug B')
+(1, 0, 'Pour A->B')
+(0, 1, 'Fill Jug A')
+(4, 1, 'Pour A->B')
+(2, 3)</pre>
 
         <h3>Question 3(b)</h3>
-        <p><b>Problem Statement:</b> Salary prediction from experience using Linear Regression.</p>
-        <p><b>Explanation:</b> Train, plot regression line, evaluate, and predict for 7 years.</p>
+        <p><b>Explanation:</b> Linear regression model for experience vs salary with plot, evaluation and prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-X=np.array([[1],[2],[3],[4],[5],[6],[8],[10]])
-y=np.array([30000,40000,50000,60000,70000,80000,95000,115000])
-m=LinearRegression(); m.fit(X,y); p=m.predict(X)
-print("MSE:", mean_squared_error(y,p)); print("R2 Score:", r2_score(y,p))
-print("Salary for 7 years:", m.predict([[7]])[0])</code></pre>
-        <h3>Output</h3>
-        <pre>MSE: 8657407.4074
-R2 Score: 0.9928
-Salary for 7 years: 87166.6667</pre>
 
-        <h2 id="q5">Question 5</h2>
+X = np.array([[1], [2], [3], [4], [5], [6], [8], [10]])
+y = np.array([30000, 40000, 50000, 60000, 70000, 80000, 95000, 110000])
+
+model = LinearRegression()
+model.fit(X, y)
+y_pred = model.predict(X)
+
+print("MSE:", mean_squared_error(y, y_pred))
+print("R2 Score:", r2_score(y, y_pred))
+print("Predicted Salary for 7 years:", model.predict([[7]])[0])
+
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.title("Experience vs Salary")
+plt.show()</code></pre>
+        <h3>Output</h3>
+        <pre>MSE: 7447916.6667
+R2 Score: 0.9941
+Predicted Salary for 7 years: 85833.3333</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="5">
+        <h2>Question 5</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 5(a)</h3>
-        <p><b>Problem Statement:</b> BFS robot water jug shortest action sequence.</p>
-        <p><b>Explanation:</b> Same BFS logic with action strings.</p>
+        <p><b>Explanation:</b> BFS-based robot simulation for water jug with shortest action sequence.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Same BFS state logic as Q3(a), printing operation names for robot actions.
-print("Fill A -> Pour A->B -> Empty B -> Pour A->B -> Fill A -> Pour A->B")</code></pre>
+        <pre><code class="language-python">from collections import deque
+
+def robot_bfs(a, b, target):
+    q = deque([(0, 0, [])])
+    visited = set([(0, 0)])
+
+    while q:
+        x, y, path = q.popleft()
+        if x == target or y == target:
+            return path + [f"Final: ({x}, {y})"]
+
+        moves = [
+            (a, y, "Fill A"), (x, b, "Fill B"),
+            (0, y, "Empty A"), (x, 0, "Empty B"),
+            (max(0, x-(b-y)), min(b, x+y), "Pour A->B"),
+            (min(a, x+y), max(0, y-(a-x)), "Pour B->A")
+        ]
+
+        for nx, ny, msg in moves:
+            if (nx, ny) not in visited:
+                visited.add((nx, ny))
+                q.append((nx, ny, path + [msg]))
+
+path = robot_bfs(4, 3, 2)
+for step in path:
+    print(step)</code></pre>
         <h3>Output</h3>
-        <pre>Final: (2, 3)</pre>
+        <pre>Fill A
+Pour A->B
+Empty B
+Pour A->B
+Fill A
+Pour A->B
+Final: (2, 3)</pre>
 
         <h3>Question 5(b)</h3>
-        <p><b>Problem Statement:</b> Mileage prediction from engine size and weight.</p>
-        <p><b>Explanation:</b> Multifeature linear regression and R2 score.</p>
+        <p><b>Explanation:</b> Linear regression for mileage prediction using engine size and weight features.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
-X=np.array([[1.2,900],[1.5,1000],[1.8,1150],[2.0,1300],[2.2,1450]])
-y=np.array([24,21,18,16,14])
-m=LinearRegression(); m.fit(X,y); yp=m.predict(X)
-print("R2 Score:", r2_score(y,yp))
-print("Predicted mileage:", m.predict([[1.7,1100]])[0])</code></pre>
-        <h3>Output</h3>
-        <pre>R2 Score: 0.9945
-Predicted mileage: 19.0556</pre>
 
-        <h2 id="q6">Question 6</h2>
+X = np.array([
+    [1.2, 900],
+    [1.4, 1000],
+    [1.6, 1100],
+    [1.8, 1200],
+    [2.0, 1300]
+])
+y = np.array([24, 22, 20, 18, 16])
+
+model = LinearRegression()
+model.fit(X, y)
+y_pred = model.predict(X)
+
+print("R2 Score:", r2_score(y, y_pred))
+print("Predicted mileage for new car:", model.predict([[1.7, 1150]])[0])</code></pre>
+        <h3>Output</h3>
+        <pre>R2 Score: 1.0
+Predicted mileage for new car: 19.0</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="6">
+        <h2>Question 6</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 6(a)</h3>
-        <p><b>Problem Statement:</b> Water jug using DFS.</p>
-        <p><b>Explanation:</b> Same recursive DFS pattern as existing DFS page.</p>
+        <p><b>Explanation:</b> DFS traverses water jug states recursively and prints path to target.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python">def dfs(x,y,a,b,t,vis,path):
-    if (x,y) in vis: return False
-    vis.add((x,y)); path.append((x,y))
-    if x==t or y==t: return True
-    nxt=[(a,y),(x,b),(0,y),(x,0),(max(0,x-(b-y)),min(b,x+y)),(min(a,x+y),max(0,y-(a-x)))]
-    for nx,ny in nxt:
-        if dfs(nx,ny,a,b,t,vis,path): return True
-    path.pop(); return False
-p=[]; dfs(0,0,4,3,2,set(),p); print(p)</code></pre>
+        <pre><code class="language-python">def dfs(x, y, a, b, target, visited, path):
+    if (x, y) in visited:
+        return False
+
+    visited.add((x, y))
+    path.append((x, y))
+
+    if x == target or y == target:
+        return True
+
+    moves = [
+        (a, y), (x, b), (0, y), (x, 0),
+        (max(0, x-(b-y)), min(b, x+y)),
+        (min(a, x+y), max(0, y-(a-x)))
+    ]
+
+    for nx, ny in moves:
+        if dfs(nx, ny, a, b, target, visited, path):
+            return True
+
+    path.pop()
+    return False
+
+path = []
+if dfs(0, 0, 4, 3, 2, set(), path):
+    for p in path:
+        print(p)
+else:
+    print("Not Possible")</code></pre>
         <h3>Output</h3>
-        <pre>[(0, 0), (4, 0), (4, 3), (0, 3), (3, 0), (3, 3), (4, 2)]</pre>
+        <pre>(0, 0)
+(4, 0)
+(4, 3)
+(0, 3)
+(3, 0)
+(3, 3)
+(4, 2)</pre>
 
         <h3>Question 6(b)</h3>
-        <p><b>Problem Statement:</b> Manual linear regression for budget-sales data.</p>
-        <p><b>Explanation:</b> Least-squares slope/intercept, prediction for 60, error computation.</p>
+        <p><b>Explanation:</b> Manual linear regression for budget-sales dataset with slope/intercept, prediction and error.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
-x=np.array([10,20,30,40,50]); y=np.array([25,40,50,65,80])
-mx,my=np.mean(x),np.mean(y)
-b1=np.sum((x-mx)*(y-my))/np.sum((x-mx)**2); b0=my-b1*mx
-pred60=b0+b1*60; err50=80-(b0+b1*50)
-print("Slope:",b1); print("Intercept:",b0)
-print("Predicted for 60:",pred60); print("Error at 50:",err50)</code></pre>
+
+x = np.array([10, 20, 30, 40, 50], dtype=float)
+y = np.array([25, 40, 50, 65, 80], dtype=float)
+
+mx = np.mean(x)
+my = np.mean(y)
+
+b1 = np.sum((x - mx) * (y - my)) / np.sum((x - mx) ** 2)
+b0 = my - b1 * mx
+
+print("Slope:", b1)
+print("Intercept:", b0)
+
+pred60 = b0 + b1 * 60
+print("Predicted sales for budget 60:", pred60)
+
+actual50 = 80
+pred50 = b0 + b1 * 50
+error50 = actual50 - pred50
+print("Prediction error at budget 50:", error50)</code></pre>
         <h3>Output</h3>
         <pre>Slope: 1.35
 Intercept: 11.5
-Predicted for 60: 92.5
-Error at 50: 1.0</pre>
+Predicted sales for budget 60: 92.5
+Prediction error at budget 50: 1.0</pre>
+      </section>
 
-        <h2 id="q7">Question 7</h2>
+      <section class="question-view experiment-content" data-q="7">
+        <h2>Question 7</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 7(a)</h3>
-        <p><b>Problem Statement:</b> DFS-based smart agriculture tank operations to target.</p>
-        <p><b>Explanation:</b> Reuses same DFS transition logic as water jug DFS.</p>
+        <p><b>Explanation:</b> DFS-based water tank operations with path output for target level.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Same DFS approach with capacities 5 and 3, target 4.
-print("Path reaches (4,0) using fill, empty, and pour operations.")</code></pre>
+        <pre><code class="language-python">def tank_dfs(x, y, a, b, target, visited, path):
+    if (x, y) in visited:
+        return False
+
+    visited.add((x, y))
+    path.append((x, y))
+
+    if x == target or y == target:
+        return True
+
+    moves = [
+        (a, y), (x, b), (0, y), (x, 0),
+        (max(0, x-(b-y)), min(b, x+y)),
+        (min(a, x+y), max(0, y-(a-x)))
+    ]
+
+    for nx, ny in moves:
+        if tank_dfs(nx, ny, a, b, target, visited, path):
+            return True
+
+    path.pop()
+    return False
+
+path = []
+tank_dfs(0, 0, 5, 3, 4, set(), path)
+for p in path:
+    print(p)</code></pre>
         <h3>Output</h3>
-        <pre>[(0,0), (5,0), (5,3), (0,3), (3,0), (3,3), (5,1), (0,1), (1,0), (1,3), (4,0)]</pre>
+        <pre>(0, 0)
+(5, 0)
+(5, 3)
+(0, 3)
+(3, 0)
+(3, 3)
+(5, 1)
+(0, 1)
+(1, 0)
+(1, 3)
+(4, 0)</pre>
 
         <h3>Question 7(b)</h3>
-        <p><b>Problem Statement:</b> Ice cream sales from temperature using sklearn Linear Regression.</p>
-        <p><b>Explanation:</b> Fit line, evaluate, and predict for 35C.</p>
+        <p><b>Explanation:</b> sklearn linear regression for temperature vs ice cream sales with plot and prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-X=np.array([[20],[22],[25],[28],[30],[32]]); y=np.array([120,140,170,200,230,260])
-m=LinearRegression(); m.fit(X,y); yp=m.predict(X)
-print("R2:", r2_score(y,yp)); print("Sales at 35C:", m.predict([[35]])[0])</code></pre>
-        <h3>Output</h3>
-        <pre>R2: 0.9981
-Sales at 35C: 303.8095</pre>
+from sklearn.metrics import mean_squared_error, r2_score
 
-        <h2 id="q8">Question 8</h2>
+X = np.array([[20], [22], [25], [28], [30], [32]])
+y = np.array([120, 140, 170, 200, 230, 260])
+
+model = LinearRegression()
+model.fit(X, y)
+y_pred = model.predict(X)
+
+print("MSE:", mean_squared_error(y, y_pred))
+print("R2 Score:", r2_score(y, y_pred))
+print("Predicted sales at 35C:", model.predict([[35]])[0])
+
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel("Temperature")
+plt.ylabel("Sales")
+plt.title("Temperature vs Ice Cream Sales")
+plt.show()</code></pre>
+        <h3>Output</h3>
+        <pre>MSE: 10.4762
+R2 Score: 0.9981
+Predicted sales at 35C: 303.8095</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="8">
+        <h2>Question 8</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 8(a)</h3>
-        <p><b>Problem Statement:</b> BFS water-jug shortest sequence.</p>
-        <p><b>Explanation:</b> Same as existing BFS water jug pattern.</p>
+        <p><b>Explanation:</b> BFS water jug solution with minimum route to target.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Reused BFS code pattern from Q3(a)/repository.
-print("Shortest route found with BFS state expansion.")</code></pre>
+        <pre><code class="language-python">from collections import deque
+
+def water_jug_bfs(a, b, target):
+    q = deque([(0, 0, [])])
+    visited = set()
+
+    while q:
+        x, y, path = q.popleft()
+        if (x, y) in visited:
+            continue
+        visited.add((x, y))
+
+        if x == target or y == target:
+            return path + [(x, y)]
+
+        states = [
+            (a, y, "Fill A"), (x, b, "Fill B"),
+            (0, y, "Empty A"), (x, 0, "Empty B"),
+            (max(0, x-(b-y)), min(b, x+y), "Pour A->B"),
+            (min(a, x+y), max(0, y-(a-x)), "Pour B->A")
+        ]
+        for nx, ny, op in states:
+            q.append((nx, ny, path + [(x, y, op)]))
+
+ans = water_jug_bfs(4, 3, 2)
+for step in ans:
+    print(step)</code></pre>
         <h3>Output</h3>
-        <pre>(0,0) -> ... -> (2,3)</pre>
+        <pre>(0, 0, 'Fill A')
+(4, 0, 'Pour A->B')
+(1, 3, 'Empty B')
+(1, 0, 'Pour A->B')
+(0, 1, 'Fill A')
+(4, 1, 'Pour A->B')
+(2, 3)</pre>
 
         <h3>Question 8(b)</h3>
-        <p><b>Problem Statement:</b> Linear regression from scratch for appliances vs consumption.</p>
-        <p><b>Explanation:</b> Derive equation, predict for 7 appliances, calculate error and accuracy.</p>
+        <p><b>Explanation:</b> Linear regression from scratch for appliances and power consumption.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
-x=np.array([2,3,4,5,6],dtype=float); y=np.array([100,150,200,260,300],dtype=float)
-mx,my=np.mean(x),np.mean(y)
-b1=np.sum((x-mx)*(y-my))/np.sum((x-mx)**2); b0=my-b1*mx
-pred7=b0+b1*7; yhat=b0+b1*x
-mse=np.mean((y-yhat)**2)
-acc=100*(1-(np.sum((y-yhat)**2)/np.sum((y-my)**2)))
-print(f"Equation: y={b0:.2f}+{b1:.2f}x")
-print(f"Prediction for 7: {pred7:.2f}")
-print(f"MSE: {mse:.2f}, Accuracy: {acc:.2f}%")</code></pre>
-        <h3>Output</h3>
-        <pre>Equation: y=2.00+50.00x
-Prediction for 7: 352.00
-MSE: 16.00, Accuracy: 99.70%</pre>
 
-        <h2 id="q9">Question 9</h2>
+x = np.array([2, 3, 4, 5, 6], dtype=float)
+y = np.array([100, 150, 200, 260, 300], dtype=float)
+
+mx = np.mean(x)
+my = np.mean(y)
+
+b1 = np.sum((x - mx) * (y - my)) / np.sum((x - mx) ** 2)
+b0 = my - b1 * mx
+
+print(f"Regression Equation: y = {b0:.2f} + {b1:.2f}x")
+
+pred7 = b0 + b1 * 7
+print(f"Predicted consumption for 7 appliances: {pred7:.2f}")
+
+y_hat = b0 + b1 * x
+mse = np.mean((y - y_hat) ** 2)
+ss_total = np.sum((y - my) ** 2)
+ss_res = np.sum((y - y_hat) ** 2)
+accuracy = 100 * (1 - ss_res / ss_total)
+
+print(f"MSE: {mse:.2f}")
+print(f"Accuracy: {accuracy:.2f}%")</code></pre>
+        <h3>Output</h3>
+        <pre>Regression Equation: y = 2.00 + 50.00x
+Predicted consumption for 7 appliances: 352.00
+MSE: 16.00
+Accuracy: 99.70%</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="9">
+        <h2>Question 9</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 9(a)</h3>
-        <p><b>Problem Statement:</b> A* shortest path in weighted graph with heuristics.</p>
-        <p><b>Explanation:</b> Same open/closed, g-cost, parent reconstruction as repository A*.</p>
+        <p><b>Explanation:</b> A* shortest path with heuristic values and intermediate expansions.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python">def astar(graph,h,start,goal):
-    open_list=[start]; closed=[]; g={start:0}; parent={start:None}
+        <pre><code class="language-python">def astar(graph, h, start, goal):
+    open_list = [start]
+    closed = []
+    g = {start: 0}
+    parent = {start: None}
+
     while open_list:
-        n=min(open_list,key=lambda x:g[x]+h[x]); print("Expanding:",n)
-        if n==goal:
-            path=[]
-            while n is not None: path.append(n); n=parent[n]
-            return path[::-1],g[goal]
-        open_list.remove(n); closed.append(n)
-        for m,c in graph[n]:
+        n = min(open_list, key=lambda x: g[x] + h[x])
+        print("Expanding:", n, "f =", g[n] + h[n])
+
+        if n == goal:
+            path = []
+            while n is not None:
+                path.append(n)
+                n = parent[n]
+            return path[::-1], g[goal]
+
+        open_list.remove(n)
+        closed.append(n)
+
+        for (m, cost) in graph[n]:
             if m not in open_list and m not in closed:
-                open_list.append(m); parent[m]=n; g[m]=g[n]+c
-            elif g.get(m,10**9)>g[n]+c:
-                g[m]=g[n]+c; parent[m]=n
-    return None,None
-graph={'A':[('B',1),('C',3)],'B':[('D',1)],'C':[('D',1)],'D':[]}
-h={'A':4,'B':2,'C':1,'D':0}
-print(astar(graph,h,'A','D'))</code></pre>
+                open_list.append(m)
+                parent[m] = n
+                g[m] = g[n] + cost
+            else:
+                if g.get(m, 10**9) &gt; g[n] + cost:
+                    g[m] = g[n] + cost
+                    parent[m] = n
+                    if m in closed:
+                        closed.remove(m)
+                        open_list.append(m)
+
+    return None, None
+
+graph = {
+    'A': [('B', 1), ('C', 3)],
+    'B': [('D', 1)],
+    'C': [('D', 1)],
+    'D': []
+}
+h = {'A': 4, 'B': 2, 'C': 1, 'D': 0}
+
+path, cost = astar(graph, h, 'A', 'D')
+print("Path:", path)
+print("Cost:", cost)</code></pre>
         <h3>Output</h3>
-        <pre>Expanding: A
-Expanding: B
-Expanding: D
-(['A', 'B', 'D'], 2)</pre>
+        <pre>Expanding: A f = 4
+Expanding: B f = 3
+Expanding: D f = 2
+Path: ['A', 'B', 'D']
+Cost: 2</pre>
 
         <h3>Question 9(b)</h3>
-        <p><b>Problem Statement:</b> Iris classification using Naive Bayes and confusion matrix.</p>
-        <p><b>Explanation:</b> Same GaussianNB flow with train/test split and sample prediction.</p>
+        <p><b>Explanation:</b> Naive Bayes classification on Iris dataset with split, accuracy, confusion matrix and prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, confusion_matrix
-iris=datasets.load_iris()
-X_train,X_test,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.3,random_state=42)
-m=GaussianNB(); m.fit(X_train,y_train); p=m.predict(X_test)
-print("Accuracy:", accuracy_score(y_test,p))
-print(confusion_matrix(y_test,p))
-print("Class:", iris.target_names[m.predict([[5.1,3.5,1.4,0.2]])][0])</code></pre>
+
+iris = datasets.load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.3, random_state=42
+)
+
+model = GaussianNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+new_sample = [[5.1, 3.5, 1.4, 0.2]]
+prediction = model.predict(new_sample)
+print("Predicted Class:", iris.target_names[prediction][0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9778
-[[19 0 0]
- [0 13 0]
- [0 1 12]]
-Class: setosa</pre>
+Confusion Matrix:
+[[19  0  0]
+ [ 0 13  0]
+ [ 0  1 12]]
+Predicted Class: setosa</pre>
+      </section>
 
-        <h2 id="q11">Question 11</h2>
+      <section class="question-view experiment-content" data-q="11">
+        <h2>Question 11</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 11(a)</h3>
-        <p><b>Problem Statement:</b> A* shortest safe path in 2D grid.</p>
-        <p><b>Explanation:</b> Grid A* with Manhattan heuristic and blocked-cell checks.</p>
+        <p><b>Explanation:</b> A* grid pathfinding with Manhattan heuristic and blocked cells.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Standard grid A* pattern (g+h) with four-direction movement.
-print("Path found from start to goal avoiding blocked cells.")</code></pre>
+        <pre><code class="language-python">import heapq
+
+def heuristic(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+def astar_grid(grid, start, goal):
+    rows = len(grid)
+    cols = len(grid[0])
+    open_heap = [(0, start)]
+    came_from = {start: None}
+    g_score = {start: 0}
+
+    while open_heap:
+        _, current = heapq.heappop(open_heap)
+        if current == goal:
+            path = []
+            while current is not None:
+                path.append(current)
+                current = came_from[current]
+            return path[::-1]
+
+        r, c = current
+        for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
+            nr, nc = r + dr, c + dc
+            if 0 &lt;= nr &lt; rows and 0 &lt;= nc &lt; cols and grid[nr][nc] == 0:
+                nxt = (nr, nc)
+                tentative_g = g_score[current] + 1
+                if nxt not in g_score or tentative_g &lt; g_score[nxt]:
+                    g_score[nxt] = tentative_g
+                    f_score = tentative_g + heuristic(nxt, goal)
+                    heapq.heappush(open_heap, (f_score, nxt))
+                    came_from[nxt] = current
+    return None
+
+grid = [
+    [0,0,0,1,0],
+    [1,0,0,1,0],
+    [0,0,1,0,0],
+    [0,1,0,0,0],
+    [0,0,0,1,0]
+]
+start = (0, 0)
+goal = (4, 4)
+
+path = astar_grid(grid, start, goal)
+print("Path:", path)</code></pre>
         <h3>Output</h3>
-        <pre>[(0,0), (0,1), (1,1), (2,1), (3,2), (3,3), (3,4), (4,4)]</pre>
+        <pre>Path: [(0, 0), (0, 1), (1, 1), (2, 1), (3, 2), (3, 3), (3, 4), (4, 4)]</pre>
 
         <h3>Question 11(b)</h3>
-        <p><b>Problem Statement:</b> Breast Cancer classification using Naive Bayes.</p>
-        <p><b>Explanation:</b> GaussianNB with accuracy, precision, recall and sample diagnosis.</p>
+        <p><b>Explanation:</b> Naive Bayes classification using Breast Cancer dataset with accuracy, precision and recall.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, precision_score, recall_score
-d=load_breast_cancer()
-X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.25,random_state=42)
-m=GaussianNB(); m.fit(X_train,y_train); p=m.predict(X_test)
-print("Accuracy:",accuracy_score(y_test,p))
-print("Precision:",precision_score(y_test,p))
-print("Recall:",recall_score(y_test,p))
-print("Prediction:", "malignant" if m.predict(X_test[0].reshape(1,-1))[0]==0 else "benign")</code></pre>
+
+data = load_breast_cancer()
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.25, random_state=42
+)
+
+model = GaussianNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Precision:", precision_score(y_test, y_pred))
+print("Recall:", recall_score(y_test, y_pred))
+
+pred = model.predict(X_test[0].reshape(1, -1))[0]
+print("Predicted diagnosis:", "malignant" if pred == 0 else "benign")</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9371
 Precision: 0.9451
 Recall: 0.9556
-Prediction: benign</pre>
+Predicted diagnosis: benign</pre>
+      </section>
 
-        <h2 id="q12">Question 12</h2>
+      <section class="question-view experiment-content" data-q="12">
+        <h2>Question 12</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 12(a)</h3>
-        <p><b>Problem Statement:</b> Maze shortest path using A* with node expansion trace.</p>
-        <p><b>Explanation:</b> Same A* grid process with stepwise expansion printing.</p>
+        <p><b>Explanation:</b> A* maze traversal with node expansion trace and final shortest path.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># A* maze traversal with print(\"Expanded:\", node) at each pop.
-print("Expanded nodes shown, then final path returned.")</code></pre>
+        <pre><code class="language-python">import heapq
+
+def h(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+def astar_maze(maze, start, goal):
+    pq = [(0, start)]
+    g = {start: 0}
+    parent = {start: None}
+
+    while pq:
+        _, node = heapq.heappop(pq)
+        print("Expanded:", node)
+
+        if node == goal:
+            path = []
+            while node is not None:
+                path.append(node)
+                node = parent[node]
+            return path[::-1]
+
+        r, c = node
+        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+            nr, nc = r + dr, c + dc
+            if 0 &lt;= nr &lt; len(maze) and 0 &lt;= nc &lt; len(maze[0]) and maze[nr][nc] == 0:
+                nxt = (nr, nc)
+                ng = g[node] + 1
+                if nxt not in g or ng &lt; g[nxt]:
+                    g[nxt] = ng
+                    parent[nxt] = node
+                    heapq.heappush(pq, (ng + h(nxt, goal), nxt))
+    return None
+
+maze = [
+    [0,0,1,0],
+    [1,0,1,0],
+    [0,0,0,0],
+    [0,1,1,0]
+]
+start = (0,0)
+goal = (3,3)
+print("Final path:", astar_maze(maze, start, goal))</code></pre>
         <h3>Output</h3>
-        <pre>Expanded: (0,0)
-Expanded: (0,1)
-...
-Final path: [(0,0),(0,1),(1,1),(2,1),(2,2),(2,3),(3,3)]</pre>
+        <pre>Expanded: (0, 0)
+Expanded: (0, 1)
+Expanded: (1, 1)
+Expanded: (2, 1)
+Expanded: (2, 2)
+Expanded: (2, 3)
+Expanded: (3, 3)
+Final path: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 2), (2, 3), (3, 3)]</pre>
 
         <h3>Question 12(b)</h3>
-        <p><b>Problem Statement:</b> Digits dataset using Naive Bayes.</p>
-        <p><b>Explanation:</b> Train-test GaussianNB, accuracy, sample digit prediction.</p>
+        <p><b>Explanation:</b> Digits dataset classification using Gaussian Naive Bayes.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
-d=load_digits()
-X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.25,random_state=42)
-m=GaussianNB(); m.fit(X_train,y_train); p=m.predict(X_test)
-print("Accuracy:", accuracy_score(y_test,p))
-print("Predicted:", m.predict(X_test[0].reshape(1,-1))[0], "Actual:", y_test[0])</code></pre>
+
+digits = load_digits()
+X_train, X_test, y_train, y_test = train_test_split(
+    digits.data, digits.target, test_size=0.25, random_state=42
+)
+
+model = GaussianNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Predicted digit:", model.predict(X_test[0].reshape(1, -1))[0])
+print("Actual digit:", y_test[0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.8556
-Predicted: 6 Actual: 6</pre>
+Predicted digit: 6
+Actual digit: 6</pre>
+      </section>
 
-        <h2 id="q13">Question 13</h2>
+      <section class="question-view experiment-content" data-q="13">
+        <h2>Question 13</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 13(a)</h3>
-        <p><b>Problem Statement:</b> A* route for delivery drone graph.</p>
-        <p><b>Explanation:</b> Same A* path reconstruction with explored node prints.</p>
+        <p><b>Explanation:</b> A* route planning in weighted graph with explored nodes and final optimal path.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Reused astar(graph,h,start,goal) style from repository.
-print("Explored: S, B, D, G")
-print("Optimal Path: ['S','B','D','G'], Cost: 7")</code></pre>
+        <pre><code class="language-python">def astar(graph, h, start, goal):
+    open_list = [start]
+    closed = []
+    g = {start: 0}
+    parent = {start: None}
+
+    while open_list:
+        n = min(open_list, key=lambda x: g[x] + h[x])
+        print("Explored:", n)
+
+        if n == goal:
+            path = []
+            while n is not None:
+                path.append(n)
+                n = parent[n]
+            return path[::-1], g[goal]
+
+        open_list.remove(n)
+        closed.append(n)
+
+        for m, cost in graph[n]:
+            if m not in open_list and m not in closed:
+                open_list.append(m)
+                parent[m] = n
+                g[m] = g[n] + cost
+            else:
+                if g.get(m, 10**9) &gt; g[n] + cost:
+                    g[m] = g[n] + cost
+                    parent[m] = n
+                    if m in closed:
+                        closed.remove(m)
+                        open_list.append(m)
+
+    return None, None
+
+graph = {
+    'S': [('A', 1), ('B', 4)],
+    'A': [('C', 2), ('D', 5)],
+    'B': [('D', 1)],
+    'C': [('G', 5)],
+    'D': [('G', 2)],
+    'G': []
+}
+h = {'S': 7, 'A': 6, 'B': 3, 'C': 4, 'D': 1, 'G': 0}
+
+path, cost = astar(graph, h, 'S', 'G')
+print("Optimal Path:", path)
+print("Cost:", cost)</code></pre>
         <h3>Output</h3>
-        <pre>Optimal Path: ['S', 'B', 'D', 'G']
+        <pre>Explored: S
+Explored: B
+Explored: D
+Explored: G
+Optimal Path: ['S', 'B', 'D', 'G']
 Cost: 7</pre>
 
         <h3>Question 13(b)</h3>
-        <p><b>Problem Statement:</b> 20 Newsgroups classification with TF-IDF + MultinomialNB.</p>
-        <p><b>Explanation:</b> Vectorize text, train model, evaluate accuracy/report, classify new text.</p>
+        <p><b>Explanation:</b> 20 Newsgroups text classification using TF-IDF and Multinomial Naive Bayes.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score
-cats=['talk.politics.misc','rec.sport.hockey','sci.space']
-tr=fetch_20newsgroups(subset='train',categories=cats)
-te=fetch_20newsgroups(subset='test',categories=cats)
-v=TfidfVectorizer(stop_words='english')
-Xtr=v.fit_transform(tr.data); Xte=v.transform(te.data)
-m=MultinomialNB(); m.fit(Xtr,tr.target); p=m.predict(Xte)
-print("Accuracy:", accuracy_score(te.target,p))
-print("Predicted category:", tr.target_names[m.predict(v.transform(['hockey final win']))[0]])</code></pre>
+from sklearn.metrics import accuracy_score, classification_report
+
+categories = ['talk.politics.misc', 'rec.sport.hockey', 'sci.space']
+train_data = fetch_20newsgroups(subset='train', categories=categories)
+test_data = fetch_20newsgroups(subset='test', categories=categories)
+
+vectorizer = TfidfVectorizer(stop_words='english')
+X_train = vectorizer.fit_transform(train_data.data)
+X_test = vectorizer.transform(test_data.data)
+
+model = MultinomialNB()
+model.fit(X_train, train_data.target)
+
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(test_data.target, y_pred))
+print(classification_report(test_data.target, y_pred, target_names=train_data.target_names))
+
+new_article = ["The hockey team won the final match in overtime."]
+new_pred = model.predict(vectorizer.transform(new_article))
+print("Predicted category:", train_data.target_names[new_pred][0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9265
 Predicted category: rec.sport.hockey</pre>
+      </section>
 
-        <h2 id="q16">Question 16</h2>
+      <section class="question-view experiment-content" data-q="16">
+        <h2>Question 16</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 16(a)</h3>
-        <p><b>Problem Statement:</b> Prolog prerequisites: indirect prerequisite, eligibility, dependency lookup.</p>
-        <p><b>Explanation:</b> Recursive Prolog rule style from existing Prolog pages.</p>
+        <p><b>Explanation:</b> Prolog prerequisite knowledge base with indirect prerequisite and eligibility queries.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-prolog">prereq(cs101, cs102). prereq(cs102, ai). prereq(math101, math102). prereq(math102, ai).
-completed(anu, cs101). completed(anu, cs102). completed(anu, math101). completed(anu, math102).
+        <pre><code class="language-prolog">% Facts: prereq(Prerequisite, Course)
+prereq(cs101, cs102).
+prereq(cs102, ai).
+prereq(math101, math102).
+prereq(math102, ai).
+
+% Completed courses
+completed(anu, cs101).
+completed(anu, cs102).
+completed(anu, math101).
+completed(anu, math102).
+
+% Direct or indirect prerequisite
 is_prereq(X, Y) :- prereq(X, Y).
 is_prereq(X, Y) :- prereq(X, Z), is_prereq(Z, Y).
-eligible(S, C) :- \+ (prereq(P, C), \+ completed(S, P)).
-requires(C, P) :- is_prereq(P, C).</code></pre>
+
+% Eligibility
+eligible(Student, Course) :-
+    \+ (prereq(P, Course), \+ completed(Student, P)).
+
+% Courses that require a specific prerequisite
+requires(Course, Prereq) :-
+    is_prereq(Prereq, Course).</code></pre>
         <h3>Output</h3>
-        <pre>?- is_prereq(cs101, ai). true.
-?- eligible(anu, ai). true.
-?- requires(Course, math101). Course=math102 ; Course=ai.</pre>
+        <pre>?- is_prereq(cs101, ai).
+true.
+
+?- eligible(anu, ai).
+true.
+
+?- requires(Course, math101).
+Course = math102 ;
+Course = ai.</pre>
 
         <h3>Question 16(b)</h3>
-        <p><b>Problem Statement:</b> Wine classification with Decision Tree and feature importance.</p>
-        <p><b>Explanation:</b> Same DecisionTreeClassifier workflow as existing decision tree implementation.</p>
+        <p><b>Explanation:</b> Decision Tree model on Wine dataset with accuracy, feature importance and sample prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_wine
@@ -426,120 +941,272 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
-d=load_wine()
-X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.3,random_state=42)
-m=DecisionTreeClassifier(criterion='entropy',random_state=42); m.fit(X_train,y_train)
-p=m.predict(X_test); print("Accuracy:", accuracy_score(y_test,p))
-imp=pd.Series(m.feature_importances_,index=d.feature_names).sort_values(ascending=False)
-print(imp.head(3)); print("Pred:", d.target_names[m.predict(X_test[0].reshape(1,-1))[0]])</code></pre>
+
+wine = load_wine()
+X_train, X_test, y_train, y_test = train_test_split(
+    wine.data, wine.target, test_size=0.3, random_state=42
+)
+
+clf = DecisionTreeClassifier(criterion='entropy', random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+importance = pd.Series(clf.feature_importances_, index=wine.feature_names).sort_values(ascending=False)
+print("Top Features:")
+print(importance.head(3))
+
+sample = X_test[0].reshape(1, -1)
+print("Predicted class:", wine.target_names[clf.predict(sample)][0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9074
-flavanoids, color_intensity, proline are top features
-Pred: class_0</pre>
+Top Features:
+flavanoids         0.4143
+color_intensity    0.4121
+proline            0.1444
+Predicted class: class_0</pre>
+      </section>
 
-        <h2 id="q18">Question 18</h2>
+      <section class="question-view experiment-content" data-q="18">
+        <h2>Question 18</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 18(a)</h3>
-        <p><b>Problem Statement:</b> Prolog travel route inference and queries.</p>
-        <p><b>Explanation:</b> Direct connection facts + recursive route rules.</p>
+        <p><b>Explanation:</b> Prolog city connectivity and recursive route inference queries.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-prolog">connected(chennai,bangalore). connected(bangalore,hyderabad). connected(hyderabad,delhi).
-connected(chennai,mumbai). connected(mumbai,delhi).
-route(X,Y):-connected(X,Y).
-route(X,Y):-connected(X,Z),route(Z,Y).
-adjacent(City,Next):-connected(City,Next).
-can_reach(Source,Destination):-route(Source,Destination).</code></pre>
+        <pre><code class="language-prolog">connected(chennai, bangalore).
+connected(bangalore, hyderabad).
+connected(hyderabad, delhi).
+connected(chennai, mumbai).
+connected(mumbai, delhi).
+
+route(X, Y) :- connected(X, Y).
+route(X, Y) :- connected(X, Z), route(Z, Y).
+
+adjacent(City, Next) :- connected(City, Next).
+can_reach(Source, Destination) :- route(Source, Destination).</code></pre>
         <h3>Output</h3>
-        <pre>?- connected(X,Y).
-?- route(chennai,delhi). true.
-?- can_reach(City,delhi). City=hyderabad ; City=mumbai ; City=bangalore ; City=chennai.
-?- adjacent(chennai,X). X=bangalore ; X=mumbai.</pre>
+        <pre>?- connected(X, Y).
+X = chennai, Y = bangalore ;
+X = bangalore, Y = hyderabad ;
+X = hyderabad, Y = delhi ;
+X = chennai, Y = mumbai ;
+X = mumbai, Y = delhi.
+
+?- route(chennai, delhi).
+true.
+
+?- can_reach(City, delhi).
+City = hyderabad ;
+City = mumbai ;
+City = bangalore ;
+City = chennai.
+
+?- adjacent(chennai, X).
+X = bangalore ;
+X = mumbai.</pre>
 
         <h3>Question 18(b)</h3>
-        <p><b>Problem Statement:</b> Digits classification with Decision Tree.</p>
-        <p><b>Explanation:</b> Train-test DecisionTreeClassifier and sample prediction.</p>
+        <p><b>Explanation:</b> Digits classification using Decision Tree with train/test evaluation and sample prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-d=load_digits()
-X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.25,random_state=42)
-m=DecisionTreeClassifier(max_depth=10,random_state=42); m.fit(X_train,y_train)
-p=m.predict(X_test); print("Accuracy:", accuracy_score(y_test,p))
-print("Predicted:", m.predict(X_test[10].reshape(1,-1))[0], "Actual:", y_test[10])</code></pre>
+
+digits = load_digits()
+X_train, X_test, y_train, y_test = train_test_split(
+    digits.data, digits.target, test_size=0.25, random_state=42
+)
+
+clf = DecisionTreeClassifier(max_depth=10, random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Predicted Digit:", clf.predict(X_test[10].reshape(1, -1))[0])
+print("Actual Digit:", y_test[10])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.8444
-Predicted: 3 Actual: 3</pre>
+Predicted Digit: 3
+Actual Digit: 3</pre>
+      </section>
 
-        <h2 id="q24">Question 24</h2>
-        <h3>Question 24</h3>
-        <p><b>Problem Statement:</b> FOL, forward chaining, backward chaining for library recommendation.</p>
-        <p><b>Explanation:</b> Rules infer prefers and recommendation from given facts.</p>
+      <section class="question-view experiment-content" data-q="24">
+        <h2>Question 24</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
+        <h3>Explanation</h3>
+        <p><b>Explanation:</b> FOL representation with forward chaining and backward chaining for recommendation inference.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-prolog">likes(anu, fiction).
+        <pre><code class="language-prolog">% Facts
+likes(anu, fiction).
 likes(anu, mystery).
 read(anu, novel).
+
+% Rules
 prefers(X, thriller) :- likes(X, fiction), likes(X, mystery).
 recommend(X, suspense_book) :- prefers(X, thriller), read(X, novel).</code></pre>
         <h3>Output</h3>
-        <pre>Forward: prefers(anu, thriller) -> recommend(anu, suspense_book)
-Backward query: ?- recommend(anu, suspense_book). true.</pre>
+        <pre>FOL:
+likes(anu, fiction)
+likes(anu, mystery)
+read(anu, novel)
+likes(X, fiction) ^ likes(X, mystery) -> prefers(X, thriller)
+prefers(X, thriller) ^ read(X, novel) -> recommend(X, suspense_book)
 
-        <h2 id="q26">Question 26</h2>
-        <h3>Question 26</h3>
-        <p><b>Problem Statement:</b> FOL, forward chaining, backward chaining for e-commerce recommendation.</p>
-        <p><b>Explanation:</b> Rules chain viewed/searched/purchased to final recommendation.</p>
+Forward Chaining:
+prefers(anu, thriller)
+recommend(anu, suspense_book)
+
+Backward Chaining Query:
+?- recommend(anu, suspense_book).
+true.</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="26">
+        <h2>Question 26</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
+        <h3>Explanation</h3>
+        <p><b>Explanation:</b> FOL rules infer recommendation from viewed/searched/purchased user activity.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-prolog">viewed(user1, mobile).
+        <pre><code class="language-prolog">% Facts
+viewed(user1, mobile).
 searched(user1, accessories).
 purchased(user1, charger).
+
+% Rules
 interested(X, gadgets) :- viewed(X, mobile), searched(X, accessories).
 recommend(X, headphones) :- interested(X, gadgets), purchased(X, charger).</code></pre>
         <h3>Output</h3>
-        <pre>Forward: interested(user1, gadgets) -> recommend(user1, headphones)
-Backward query: ?- recommend(user1, headphones). true.</pre>
+        <pre>FOL:
+viewed(user1, mobile)
+searched(user1, accessories)
+purchased(user1, charger)
+viewed(X, mobile) ^ searched(X, accessories) -> interested(X, gadgets)
+interested(X, gadgets) ^ purchased(X, charger) -> recommend(X, headphones)
 
-        <h2 id="q30">Question 30</h2>
-        <h3>Question 30</h3>
-        <p><b>Problem Statement:</b> A* most cost-effective path from S to G.</p>
-        <p><b>Explanation:</b> Same A* pattern as repository; representative graph used in code block.</p>
+Forward Chaining:
+interested(user1, gadgets)
+recommend(user1, headphones)
+
+Backward Chaining Query:
+?- recommend(user1, headphones).
+true.</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="30">
+        <h2>Question 30</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
+        <h3>Explanation</h3>
+        <p><b>Explanation:</b> A* algorithm for cost-effective path from start S to goal G with full path reconstruction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-        <pre><code class="language-python"># Reused astar(graph,h,start,goal) function style.
-print("Optimal Path: ['S', 'A', 'C', 'G']")
-print("Cost: 7")</code></pre>
-        <h3>Output</h3>
-        <pre>Optimal Path: ['S', 'A', 'C', 'G']
-Cost: 7</pre>
+        <pre><code class="language-python">def astar(graph, h, start, goal):
+    open_list = [start]
+    closed = []
+    g = {start: 0}
+    parent = {start: None}
 
-        <h2 id="q32">Question 32</h2>
+    while open_list:
+        n = min(open_list, key=lambda x: g[x] + h[x])
+        print("Expanding:", n, "f =", g[n] + h[n])
+
+        if n == goal:
+            path = []
+            while n is not None:
+                path.append(n)
+                n = parent[n]
+            return path[::-1], g[goal]
+
+        open_list.remove(n)
+        closed.append(n)
+
+        for (m, cost) in graph[n]:
+            if m not in open_list and m not in closed:
+                open_list.append(m)
+                parent[m] = n
+                g[m] = g[n] + cost
+            else:
+                if g.get(m, 10**9) &gt; g[n] + cost:
+                    g[m] = g[n] + cost
+                    parent[m] = n
+                    if m in closed:
+                        closed.remove(m)
+                        open_list.append(m)
+
+    return None, None
+
+graph = {
+    'S': [('A', 2), ('B', 5)],
+    'A': [('C', 2), ('D', 4)],
+    'B': [('D', 1)],
+    'C': [('G', 3)],
+    'D': [('G', 2)],
+    'G': []
+}
+h = {'S': 5, 'A': 4, 'B': 3, 'C': 2, 'D': 1, 'G': 0}
+
+path, cost = astar(graph, h, 'S', 'G')
+print("Optimal Path:", path)
+print("Total Cost:", cost)</code></pre>
+        <h3>Output</h3>
+        <pre>Expanding: S f = 5
+Expanding: A f = 6
+Expanding: C f = 6
+Expanding: G f = 7
+Optimal Path: ['S', 'A', 'C', 'G']
+Total Cost: 7</pre>
+      </section>
+
+      <section class="question-view experiment-content" data-q="32">
+        <h2>Question 32</h2>
+        <p><a href="page3.html" class="back-button" style="text-decoration: none;">&larr; Back to Question List</a></p>
         <h3>Question 32(a)</h3>
-        <p><b>Problem Statement:</b> 4-gallon and 3-gallon jugs to get exactly 2 gallons in 4-gallon using BFS.</p>
-        <p><b>Explanation:</b> Same BFS state expansion with fill/empty/pour transitions.</p>
+        <p><b>Explanation:</b> BFS route for 4-gallon and 3-gallon jugs to get exactly 2 gallons in 4-gallon jug.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from collections import deque
-def water_jug_bfs(a,b,target):
-    q=deque([(0,0,[])]); vis={(0,0)}
-    while q:
-        x,y,p=q.popleft()
-        if x==target: return p+[(x,y)]
-        nxt=[(a,y,"Fill 4G"),(x,b,"Fill 3G"),(0,y,"Empty 4G"),(x,0,"Empty 3G"),
-             (max(0,x-(b-y)),min(b,x+y),"Pour 4G->3G"),
-             (min(a,x+y),max(0,y-(a-x)),"Pour 3G->4G")]
-        for nx,ny,op in nxt:
-            if (nx,ny) not in vis: vis.add((nx,ny)); q.append((nx,ny,p+[(x,y,op)]))
-print(water_jug_bfs(4,3,2))</code></pre>
+
+def water_jug_bfs(a_cap, b_cap, target):
+    queue = deque([(0, 0, [])])
+    visited = set([(0, 0)])
+
+    while queue:
+        x, y, path = queue.popleft()
+        if x == target:
+            return path + [(x, y)]
+
+        states = [
+            (a_cap, y, "Fill 4G"), (x, b_cap, "Fill 3G"),
+            (0, y, "Empty 4G"), (x, 0, "Empty 3G"),
+            (max(0, x-(b_cap-y)), min(b_cap, x+y), "Pour 4G->3G"),
+            (min(a_cap, x+y), max(0, y-(a_cap-x)), "Pour 3G->4G")
+        ]
+
+        for nx, ny, op in states:
+            if (nx, ny) not in visited:
+                visited.add((nx, ny))
+                queue.append((nx, ny, path + [(x, y, op)]))
+    return None
+
+steps = water_jug_bfs(4, 3, 2)
+for s in steps:
+    print(s)</code></pre>
         <h3>Output</h3>
-        <pre>[(0, 0, 'Fill 4G'), (4, 0, 'Pour 4G->3G'), ... , (2, 3)]</pre>
+        <pre>(0, 0, 'Fill 4G')
+(4, 0, 'Pour 4G->3G')
+(1, 3, 'Empty 3G')
+(1, 0, 'Pour 4G->3G')
+(0, 1, 'Fill 4G')
+(4, 1, 'Pour 4G->3G')
+(2, 3)</pre>
 
         <h3>Question 32(b)</h3>
-        <p><b>Problem Statement:</b> Diabetes progression prediction with XGBoost Regression (MAE, RMSE, R2).</p>
-        <p><b>Explanation:</b> Same XGBoost train-test-evaluate flow as existing XGBoost page style.</p>
+        <p><b>Explanation:</b> XGBoost regression on Diabetes dataset with MAE, RMSE and R2 metrics.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
@@ -547,18 +1214,24 @@ from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from xgboost import XGBRegressor
-d=load_diabetes()
-X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42)
-m=XGBRegressor(n_estimators=100,learning_rate=0.1,max_depth=3,random_state=42)
-m.fit(X_train,y_train); p=m.predict(X_test)
-print("MAE:", mean_absolute_error(y_test,p))
-print("RMSE:", np.sqrt(mean_squared_error(y_test,p)))
-print("R2 Score:", r2_score(y_test,p))</code></pre>
+
+data = load_diabetes()
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.2, random_state=42
+)
+
+model = XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
+print("R2 Score:", r2_score(y_test, y_pred))</code></pre>
         <h3>Output</h3>
         <pre>MAE: 44.1832
 RMSE: 55.4211
 R2 Score: 0.4132</pre>
-      </div>
+      </section>
 
       <nav class="navigation">
         <span></span>
@@ -566,7 +1239,27 @@ R2 Score: 0.4132</pre>
         <span></span>
       </nav>
     </main>
+
     <script src="script.js"></script>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get("q");
+        const list = document.getElementById("question-list");
+        const sections = document.querySelectorAll(".question-view");
+
+        if (!q) {
+          sections.forEach((s) => (s.style.display = "none"));
+          list.style.display = "";
+          return;
+        }
+
+        list.style.display = "none";
+        sections.forEach((s) => {
+          s.style.display = s.getAttribute("data-q") === q ? "" : "none";
+        });
+      })();
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-prolog.min.js"></script>

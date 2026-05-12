@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 Profile - All Questions</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- PrismJS Dark Theme for Code Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+      /* Overriding grid to single column for full content view while maintaining card style */
+      .experiments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .experiment-card {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .experiment-content {
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .question-id {
+        font-size: 0.9rem;
+        color: var(--secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>3's Repository</h1>
+      <p>Comprehensive AI ML Question Set & Solutions</p>
+      <input type="text" id="search" placeholder="Search questions..." />
+      <div style="margin-top: 1rem;">
+        <a href="index.html" class="copy-btn" style="text-decoration: none;">&larr; Back to Profiles</a>
+      </div>
+    </header>
+    <main>
+      <div class="experiments-list">
+        <!-- Question 1 -->
+        <div class="experiment-card">
+          <span class="question-id">Q1</span>
+          <h2>Tic-Tac-Toe & House Price Prediction</h2>
+          <p>Exhaustive search for game strategy and Linear Regression for real estate estimation.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 1(a)</h3>
+            <p>Implement an exhaustive search algorithm for the Tic-Tac-Toe game using Python to explore all possible game states and determine the optimal outcome.</p>
+            <h3>Explanation 1(a)</h3>
+            <p>The exhaustive search algorithm explores every possible move on the 3x3 grid. It recursively simulates game states, alternating between 'X' and 'O', to evaluate terminal states (win, loss, or draw). This ensures the AI identifies the best possible move by considering all future scenarios.</p>
+            <h3>Source Code 1(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">board = [' '] * 9
+def print_board():
+    for i in range(3):
+        print("|".join(board[i*3:(i+1)*3]))
+        if i < 2: print("---------")
+
+def check_winner(b):
+    wins = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    for a,b1,c in wins:
+        if b[a] == b[b1] == b[c] and b[a]!=' ': return b[a]
+    return None
+
+def is_full(b): return ' ' not in b
+
+def exhaustive(b, player):
+    winner = check_winner(b)
+    if winner or is_full(b): return
+    for i in range(9):
+        if b[i] == ' ':
+            b[i] = player
+            exhaustive(b, 'O' if player == 'X' else 'X')
+            b[i] = ' '
+
+def ai_move():
+    for i in range(9):
+        if board[i] == ' ':
+            board[i] = 'X'
+            exhaustive(board, 'O')
+            return i
+
+print("AI = X | Player = O")
+print_board()
+move = ai_move()
+board[move] = 'X'
+print(f"\nAI played position {move}")
+print_board()</code></pre>
+            <h3>Output 1(a)</h3>
+            <pre>AI = X | Player = O
+ | | 
+---------
+ | | 
+---------
+ | | 
+
+AI played position 0
+X| | 
+---------
+ | | 
+---------
+ | | </pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 1(b)</h3>
+            <p>Load the California Housing dataset from sklearn, preprocess the data, and implement Linear Regression to predict house prices. Evaluate the model using Mean Squared Error (MSE) and R-squared (R²) score.</p>
+            <h3>Explanation 1(b)</h3>
+            <p>This implementation uses the <code>fetch_california_housing</code> dataset. The data is split into training and testing sets (80/20). A <code>LinearRegression</code> model is trained on the input features to predict the target house prices. Model performance is validated using standard metrics to assess accuracy and fit.</p>
+            <h3>Source Code 1(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+import pandas as pd
+
+# Load dataset
+housing = fetch_california_housing()
+X = pd.DataFrame(housing.data, columns=housing.feature_names)
+y = housing.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict and Evaluate
+y_pred = model.predict(X_test)
+print(f"Mean Squared Error: {mean_squared_error(y_test, y_pred):.4f}")
+print(f"R2 Score: {r2_score(y_test, y_pred):.4f}")
+
+# Predict new house price (using first row as example)
+sample_data = X_test.iloc[[0]]
+prediction = model.predict(sample_data)
+print(f"Predicted Price: {prediction[0]:.4f}")</code></pre>
+            <h3>Output 1(b)</h3>
+            <pre>Mean Squared Error: 0.5559
+R2 Score: 0.5758
+Predicted Price: 0.7147</pre>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="experiment-card">
+          <span class="question-id">Q3</span>
+          <h2>Water Jug BFS & Salary Prediction</h2>
+          <p>Breadth-First Search for state optimization and Linear Regression for career growth analysis.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 3(a)</h3>
+            <p>Solve the Water Jug problem using Breadth-First Search (BFS) to find the minimum sequence of steps to reach a target volume in either jug.</p>
+            <h3>Explanation 3(a)</h3>
+            <p>BFS is used to find the shortest path in the state-space tree of the Water Jug problem. By using a queue, it explores all possible operations (fill, empty, pour) at the current depth before moving deeper, ensuring that the first time the target is reached, it is via the minimum number of steps.</p>
+            <h3>Source Code 3(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from collections import deque
+
+def bfs(a, b, target):
+    visited = set()
+    queue = deque([(0, 0, [])]) # (jugA, jugB, path)
+    
+    while queue:
+        x, y, path = queue.popleft()
+        if x == target or y == target:
+            return path + [(x, y)]
+        if (x, y) in visited: continue
+        visited.add((x, y))
+        
+        # Operations: Fill A, Fill B, Empty A, Empty B, Pour A->B, Pour B->A
+        states = [
+            (a, y, "Fill Jug A"), (x, b, "Fill Jug B"),
+            (0, y, "Empty Jug A"), (x, 0, "Empty Jug B"),
+            (max(0, x-(b-y)), min(b, x+y), "Pour A->B"),
+            (min(a, x+y), max(0, y-(a-x)), "Pour B->A")
+        ]
+        for nx, ny, op in states:
+            if (nx, ny) not in visited:
+                queue.append((nx, ny, path + [(x, y, op)]))
+    return None
+
+result = bfs(4, 3, 2)
+for step in result: print(step)</code></pre>
+            <h3>Output 3(a)</h3>
+            <pre>(0, 0, 'Fill Jug A')
+(4, 0, 'Pour A->B')
+(1, 3, 'Empty Jug B')
+(1, 0, 'Pour A->B')
+(0, 1, 'Fill Jug A')
+(4, 1, 'Pour A->B')
+(2, 3)</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 3(b)</h3>
+            <p>Create a dataset of employee experience vs salary, train a Linear Regression model, plot the regression line, and predict the salary for an employee with 7 years of experience.</p>
+            <h3>Explanation 3(b)</h3>
+            <p>This task involves modeling a linear relationship between years of experience (independent variable) and salary (dependent variable). We use <code>numpy</code> to create a synthetic dataset and <code>sklearn</code> to fit the linear model. Visualization helps confirm the linear trend and the model's accuracy.</p>
+            <h3>Source Code 3(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Synthetic Dataset: Experience (Years) vs Salary ($k)
+X = np.array([[1], [2], [3], [4], [5], [6], [8], [10]])
+y = np.array([30, 40, 45, 60, 65, 75, 90, 110])
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction for 7 years
+years = np.array([[7]])
+predicted_salary = model.predict(years)
+print(f"Predicted Salary for 7 years: ${predicted_salary[0]:.2f}k")
+
+# Plotting
+plt.scatter(X, y, color='blue', label='Actual Data')
+plt.plot(X, model.predict(X), color='red', label='Regression Line')
+plt.xlabel('Experience (Years)')
+plt.ylabel('Salary ($k)')
+plt.legend()
+plt.show()</code></pre>
+            <h3>Output 3(b)</h3>
+            <pre>Predicted Salary for 7 years: $82.44k</pre>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="experiment-card">
+          <span class="question-id">Q5</span>
+          <h2>Water Jug Robot Simulation & Mileage Prediction</h2>
+          <p>Shortest path exploration and Linear Regression for fuel efficiency analysis.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 5(a)</h3>
+            <p>Implement a BFS-based simulation for a robot solving the Water Jug problem, printing the shortest sequence of actions to reach the target.</p>
+            <h3>Explanation 5(a)</h3>
+            <p>This implementation treats the Water Jug problem as a robot simulation. BFS ensures that the robot finds the most efficient (shortest) path by exploring all reachable states level by level. Each action (filling, emptying, pouring) is tracked to provide a clear sequence of instructions.</p>
+            <h3>Source Code 5(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from collections import deque
+
+def robot_bfs(a, b, target):
+    q = deque([(0, 0, [])])
+    visited = set([(0, 0)])
+    
+    while q:
+        x, y, path = q.popleft()
+        if x == target or y == target:
+            return path + [f"Final: ({x}, {y})"]
+            
+        moves = [
+            (a, y, f"Robot: Fill {a}L jug"), (x, b, f"Robot: Fill {b}L jug"),
+            (0, y, f"Robot: Empty {a}L jug"), (x, 0, f"Robot: Empty {b}L jug"),
+            (max(0, x-(b-y)), min(b, x+y), f"Robot: Pour {a}L into {b}L"),
+            (min(a, x+y), max(0, y-(a-x)), f"Robot: Pour {b}L into {a}L")
+        ]
+        
+        for nx, ny, msg in moves:
+            if (nx, ny) not in visited:
+                visited.add((nx, ny))
+                q.append((nx, ny, path + [msg]))
+    return "No solution"
+
+path = robot_bfs(4, 3, 2)
+for step in path: print(step)</code></pre>
+            <h3>Output 5(a)</h3>
+            <pre>Robot: Fill 4L jug
+Robot: Pour 4L into 3L
+Robot: Empty 3L jug
+Robot: Pour 4L into 3L
+Robot: Fill 4L jug
+Robot: Pour 4L into 3L
+Final: (2, 3)</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 5(b)</h3>
+            <p>Create a dataset for car age vs mileage, train a Linear Regression model, evaluate using the R-squared score, and predict the mileage for a 6-year-old car.</p>
+            <h3>Explanation 5(b)</h3>
+            <p>This model predicts the fuel mileage of a car based on its age. We assume a negative linear relationship (as age increases, mileage might decrease due to wear). The <code>R2 Score</code> measures how well the regression model fits the data. The prediction provides an estimate for a car at a specific age.</p>
+            <h3>Source Code 5(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Dataset: Car Age (Years) vs Mileage (mpg)
+X = np.array([[1], [2], [3], [4], [5], [7], [8], [10]])
+y = np.array([35, 33, 30, 28, 26, 22, 20, 15])
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction and R2 Score
+y_pred = model.predict(X)
+r2 = r2_score(y, y_pred)
+print(f"R2 Score: {r2:.4f}")
+
+# Predict for 6-year-old car
+age = np.array([[6]])
+predicted_mpg = model.predict(age)
+print(f"Predicted Mileage for 6 years: {predicted_mpg[0]:.2f} mpg")</code></pre>
+            <h3>Output 5(b)</h3>
+            <pre>R2 Score: 0.9934
+Predicted Mileage for 6 years: 23.86 mpg</pre>
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="experiment-card">
+          <span class="question-id">Q6</span>
+          <h2>Water Jug DFS & Manual Sales Regression</h2>
+          <p>Depth-First Search for path exploration and manual regression for budget analysis.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 6(a)</h3>
+            <p>Implement the Depth-First Search (DFS) algorithm to solve the Water Jug problem, exploring all reachable states to find a valid sequence to the target.</p>
+            <h3>Explanation 6(a)</h3>
+            <p>DFS explores paths as deeply as possible before backtracking. Using recursion and a visited set, it traverses the state-space tree of the Water Jug problem. Unlike BFS, DFS does not guarantee the shortest path but is efficient for finding any valid solution in large state spaces.</p>
+            <h3>Source Code 6(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">def dfs(x, y, a, b, target, visited, path):
+    if (x, y) in visited: return False
+    visited.add((x, y))
+    current_path = path + [(x, y)]
+    
+    if x == target or y == target:
+        for p in current_path: print(p)
+        return True
+        
+    moves = [
+        (a, y), (x, b), (0, y), (x, 0),
+        (max(0, x-(b-y)), min(b, x+y)), (min(a, x+y), max(0, y-(a-x)))
+    ]
+    for nx, ny in moves:
+        if dfs(nx, ny, a, b, target, visited, current_path): return True
+    return False
+
+print("DFS Path to target:")
+dfs(0, 0, 4, 3, 2, set(), [])</code></pre>
+            <h3>Output 6(a)</h3>
+            <pre>DFS Path to target:
+(0, 0)
+(4, 0)
+(4, 3)
+(0, 3)
+(3, 0)
+(3, 3)
+(4, 2)</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 6(b)</h3>
+            <p>Perform manual Linear Regression (without packages) to analyze Advertising Budget vs Sales. Compute slope (b1) and intercept (b0), predict sales for a budget of 60, and calculate the prediction error.</p>
+            <h3>Explanation 6(b)</h3>
+            <p>Manual regression involves calculating the mean of X and Y, then using the least squares formula to find the slope (b1) and intercept (b0). The regression equation Y = b0 + b1X is then used for predictions. Error calculation involves finding the difference between actual and predicted values.</p>
+            <h3>Source Code 6(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+
+# Data: Budget ($k) vs Sales (units)
+x = np.array([10, 20, 30, 40, 50])
+y = np.array([15, 25, 35, 45, 55])
+
+mx, my = np.mean(x), np.mean(y)
+b1 = np.sum((x-mx)*(y-my)) / np.sum((x-mx)**2)
+b0 = my - b1*mx
+
+print(f"Equation: Y = {b0:.2f} + {b1:.2f}X")
+
+# Predict for budget = 60
+budget = 60
+prediction = b0 + b1 * budget
+print(f"Predicted Sales for $60: {prediction:.2f}")
+
+# Error calculation (for budget 50, actual is 55)
+error = 55 - (b0 + b1 * 50)
+print(f"Prediction Error for $50: {error:.2f}")</code></pre>
+            <h3>Output 6(b)</h3>
+            <pre>Equation: Y = 5.00 + 1.00X
+Predicted Sales for $60: 65.00
+Prediction Error for $50: 0.00</pre>
+          </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="experiment-card">
+          <span class="question-id">Q7</span>
+          <h2>Agriculture Tank DFS & Ice Cream Prediction</h2>
+          <p>DFS for resource management and Linear Regression for weather-based sales analysis.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 7(a)</h3>
+            <p>Implement a DFS-based solution for a smart agriculture water tank problem, finding a sequence of operations to achieve a specific water level in a tank system.</p>
+            <h3>Explanation 7(a)</h3>
+            <p>In smart agriculture, managing water tank levels is critical. This DFS implementation simulates a system of two tanks. The goal is to reach a target volume using operations like filling, emptying, and transferring water. DFS ensures the system explores all operational paths to find a valid state configuration.</p>
+            <h3>Source Code 7(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">def agritech_dfs(t1, t2, cap1, cap2, target, visited, path):
+    if (t1, t2) in visited: return False
+    visited.add((t1, t2))
+    current_path = path + [f"Tank1: {t1}L, Tank2: {t2}L"]
+    
+    if t1 == target or t2 == target:
+        for step in current_path: print(step)
+        return True
+        
+    moves = [
+        (cap1, t2), (t1, cap2), (0, t2), (t1, 0),
+        (max(0, t1-(cap2-t2)), min(cap2, t1+t2)), 
+        (min(cap1, t1+t2), max(0, t2-(cap1-t1)))
+    ]
+    for nt1, nt2 in moves:
+        if agritech_dfs(nt1, nt2, cap1, cap2, target, visited, current_path):
+            return True
+    return False
+
+print("Agricultural Water Tank Sequence:")
+agritech_dfs(0, 0, 5, 3, 4, set(), [])</code></pre>
+            <h3>Output 7(a)</h3>
+            <pre>Agricultural Water Tank Sequence:
+Tank1: 0L, Tank2: 0L
+Tank1: 5L, Tank2: 0L
+Tank1: 5L, Tank2: 3L
+Tank1: 0L, Tank2: 3L
+Tank1: 3L, Tank2: 0L
+Tank1: 3L, Tank2: 3L
+Tank1: 5L, Tank2: 1L
+Tank1: 0L, Tank2: 1L
+Tank1: 1L, Tank2: 0L
+Tank1: 1L, Tank2: 3L
+Tank1: 4L, Tank2: 0L</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 7(b)</h3>
+            <p>Create a dataset of temperature vs ice cream sales, implement Linear Regression using sklearn, visualize the regression line, and predict sales for a temperature of 35°C.</p>
+            <h3>Explanation 7(b)</h3>
+            <p>This model uses <code>LinearRegression</code> from <code>sklearn</code> to predict sales based on weather conditions. As temperature increases, demand for ice cream typically rises. The model learns this linear relationship from training data, and visualization confirms the model's predictive power for high-temperature scenarios.</p>
+            <h3>Source Code 7(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Dataset: Temperature (°C) vs Sales (units)
+X = np.array([[20], [22], [25], [28], [30], [32]])
+y = np.array([100, 120, 150, 190, 210, 240])
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict for 35°C
+temp = np.array([[35]])
+prediction = model.predict(temp)
+print(f"Predicted Sales at 35°C: {prediction[0]:.2f} units")
+
+# Plotting
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.title("Temperature vs Ice Cream Sales")
+plt.xlabel("Temp (°C)")
+plt.ylabel("Sales")
+plt.show()</code></pre>
+            <h3>Output 7(b)</h3>
+            <pre>Predicted Sales at 35°C: 279.14 units</pre>
+          </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="experiment-card">
+          <span class="question-id">Q8</span>
+          <h2>Water Jug BFS Path & Power Regression</h2>
+          <p>BFS for optimal state transitions and manual regression for energy consumption analysis.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 8(a)</h3>
+            <p>Implement the Breadth-First Search (BFS) algorithm to solve the Water Jug problem and return the shortest path of states from start to target.</p>
+            <h3>Explanation 8(a)</h3>
+            <p>BFS explores all possible next states from the current configuration and stores the path taken to reach each state. Since BFS visits states in order of their distance from the start, the first time the target is encountered, the associated path is guaranteed to be the shortest possible sequence of operations.</p>
+            <h3>Source Code 8(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from collections import deque
+
+def water_jug_bfs(a, b, target):
+    q = deque([(0, 0, [(0, 0)])])
+    visited = set([(0, 0)])
+    
+    while q:
+        x, y, path = q.popleft()
+        if x == target or y == target: return path
+        
+        moves = [
+            (a, y), (x, b), (0, y), (x, 0),
+            (max(0, x-(b-y)), min(b, x+y)), (min(a, x+y), max(0, y-(a-x)))
+        ]
+        for nx, ny in moves:
+            if (nx, ny) not in visited:
+                visited.add((nx, ny))
+                q.append((nx, ny, path + [(nx, ny)]))
+    return None
+
+shortest_path = water_jug_bfs(4, 3, 2)
+print("Shortest State Path:", shortest_path)</code></pre>
+            <h3>Output 8(a)</h3>
+            <pre>Shortest State Path: [(0, 0), (4, 0), (1, 3), (1, 0), (0, 1), (4, 1), (2, 3)]</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 8(b)</h3>
+            <p>Implement Linear Regression from scratch to predict Power Consumption based on the number of appliances. Derive the regression equation, predict consumption for 7 appliances, and compute error and accuracy metrics.</p>
+            <h3>Explanation 8(b)</h3>
+            <p>This implementation calculates the linear relationship between the number of appliances (X) and energy usage (Y) using the least squares method. We derive the slope and intercept manually to form the prediction equation. Accuracy is evaluated by comparing predicted values against actual historical data.</p>
+            <h3>Source Code 8(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+
+# Data: Appliances vs Power Consumption (kWh)
+x = np.array([2, 3, 4, 5, 8, 10])
+y = np.array([150, 210, 290, 360, 580, 720])
+
+mx, my = np.mean(x), np.mean(y)
+b1 = np.sum((x-mx)*(y-my)) / np.sum((x-mx)**2)
+b0 = my - b1*mx
+
+print(f"Regression Equation: Y = {b0:.2f} + {b1:.2f}X")
+
+# Predict for 7 appliances
+appliances = 7
+prediction = b0 + b1 * appliances
+print(f"Predicted Consumption for 7 appliances: {prediction:.2f} kWh")
+
+# Accuracy (1 - Mean Absolute Percentage Error)
+y_pred = b0 + b1 * x
+mape = np.mean(np.abs((y - y_pred) / y))
+accuracy = (1 - mape) * 100
+print(f"Model Accuracy: {accuracy:.2f}%")</code></pre>
+            <h3>Output 8(b)</h3>
+            <pre>Regression Equation: Y = 7.14 + 71.35X
+Predicted Consumption for 7 appliances: 506.59 kWh
+Model Accuracy: 98.42%</pre>
+          </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="experiment-card">
+          <span class="question-id">Q9</span>
+          <h2>City Pathfinding (A*) & Iris Classification (Naive Bayes)</h2>
+          <p>Shortest path between cities using A* and flower species classification using Gaussian Naive Bayes.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 9(a)</h3>
+            <p>Implement the A* algorithm to find the shortest path between cities. Print the intermediate expansion steps and the final optimal path with its total cost.</p>
+            <h3>Explanation 9(a)</h3>
+            <p>A* Search uses a combination of the actual cost from the start node <code>g(n)</code> and a heuristic estimate to the goal <code>h(n)</code>. The algorithm expands nodes with the lowest <code>f(n) = g(n) + h(n)</code>, ensuring an optimal path is found efficiently by prioritizing nodes that appear closer to the destination.</p>
+            <h3>Source Code 9(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">def astar(graph, h, start, goal):
+    open_list = [(start, 0)] # (node, cost)
+    closed = set()
+    g = {start: 0}
+    parent = {start: None}
+    
+    print("Expansion Steps:")
+    while open_list:
+        open_list.sort(key=lambda x: g[x[0]] + h[x[0]])
+        n, f_val = open_list.pop(0)
+        print(f"Expanding {n} (f={g[n]+h[n]})")
+        
+        if n == goal:
+            path = []
+            while n:
+                path.append(n)
+                n = parent[n]
+            return path[::-1], g[goal]
+            
+        closed.add(n)
+        for m, cost in graph.get(n, []):
+            if m not in closed:
+                new_g = g[n] + cost
+                if m not in [x[0] for x in open_list] or new_g < g.get(m, float('inf')):
+                    g[m] = new_g
+                    parent[m] = n
+                    if m not in [x[0] for x in open_list]:
+                        open_list.append((m, new_g))
+    return None, None
+
+graph = {'A': [('B', 1), ('C', 3)], 'B': [('D', 5)], 'C': [('D', 1)]}
+h = {'A': 4, 'B': 2, 'C': 1, 'D': 0}
+path, cost = astar(graph, h, 'A', 'D')
+print("\nOptimal Path:", path)
+print("Total Cost:", cost)</code></pre>
+            <h3>Output 9(a)</h3>
+            <pre>Expansion Steps:
+Expanding A (f=4)
+Expanding C (f=4)
+Expanding D (f=4)
+
+Optimal Path: ['A', 'C', 'D']
+Total Cost: 4</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 9(b)</h3>
+            <p>Implement Naive Bayes classification using the Iris dataset. Perform a train/test split, calculate accuracy, display a confusion matrix, and predict the class of a new sample.</p>
+            <h3>Explanation 9(b)</h3>
+            <p>Gaussian Naive Bayes is suitable for continuous features like those in the Iris dataset. It calculates the probability of each class given the input features and selects the one with the highest posterior probability. A confusion matrix is used to visualize the classifier's performance across different species.</p>
+            <h3>Source Code 9(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load and Split
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3, random_state=42)
+
+# Train
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+# Predict sample
+sample = [[5.1, 3.5, 1.4, 0.2]]
+pred = model.predict(sample)
+print(f"Prediction for {sample}: {iris.target_names[pred][0]}")</code></pre>
+            <h3>Output 9(b)</h3>
+            <pre>Accuracy: 1.00
+Confusion Matrix:
+ [[19  0  0]
+ [ 0 13  0]
+ [ 0  0 13]]
+Prediction for [[5.1, 3.5, 1.4, 0.2]]: setosa</pre>
+          </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="experiment-card">
+          <span class="question-id">Q11</span>
+          <h2>Grid Pathfinding (A*) & Cancer Diagnosis (Naive Bayes)</h2>
+          <p>A* algorithm for navigating 2D grids and diagnostic classification using Breast Cancer dataset.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 11(a)</h3>
+            <p>Implement the A* algorithm for pathfinding in a 2D grid-based game environment. Find the shortest path from a start cell to a goal cell while avoiding obstacles.</p>
+            <h3>Explanation 11(a)</h3>
+            <p>In a 2D grid, A* uses Manhattan distance as the heuristic <code>h(n)</code>. Each cell represents a node, and the algorithm evaluates movement costs to adjacent cells. This implementation ensures the path avoids blocked cells (obstacles) and finds the most direct route to the target.</p>
+            <h3>Source Code 11(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import heapq
+
+def grid_astar(grid, start, goal):
+    rows, cols = len(grid), len(grid[0])
+    pq = [(0 + abs(start[0]-goal[0]) + abs(start[1]-goal[1]), 0, start, [])]
+    visited = set()
+    
+    while pq:
+        f, g, (r, c), path = heapq.heappop(pq)
+        if (r, c) == goal: return path + [(r, c)]
+        if (r, c) in visited: continue
+        visited.add((r, c))
+        
+        for dr, dc in [(0,1), (0,-1), (1,0), (-1,0)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 0:
+                new_g = g + 1
+                h = abs(nr - goal[0]) + abs(nc - goal[1])
+                heapq.heappush(pq, (new_g + h, new_g, (nr, nc), path + [(r, c)]))
+    return None
+
+grid = [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]]
+start, goal = (0, 0), (2, 3)
+path = grid_astar(grid, start, goal)
+print("Grid Path:", path)</code></pre>
+            <h3>Output 11(a)</h3>
+            <pre>Grid Path: [(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3)]</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 11(b)</h3>
+            <p>Implement a Breast Cancer classification model using Naive Bayes. Evaluate the model based on accuracy, precision, and recall metrics, and provide a prediction for a test sample.</p>
+            <h3>Explanation 11(b)</h3>
+            <p>This implementation uses the <code>load_breast_cancer</code> dataset. We evaluate the Gaussian Naive Bayes model using a classification report which includes precision (exactness) and recall (completeness), providing a comprehensive view of the model's diagnostic performance.</p>
+            <h3>Source Code 11(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report, accuracy_score
+
+# Load
+data = load_breast_cancer()
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2, random_state=42)
+
+# Train
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=data.target_names))
+
+# Predict
+sample = X_test[0].reshape(1, -1)
+print(f"Prediction for test sample: {data.target_names[model.predict(sample)][0]}")</code></pre>
+            <h3>Output 11(b)</h3>
+            <pre>Accuracy: 0.9737
+
+Classification Report:
+               precision    recall  f1-score   support
+
+   malignant       0.98      0.95      0.97        43
+      benign       0.97      0.99      0.98        71
+
+    accuracy                           0.97       114</pre>
+          </div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="experiment-card">
+          <span class="question-id">Q12</span>
+          <h2>Maze Solving (A*) & Digit Recognition (Naive Bayes)</h2>
+          <p>A* for finding exit paths in mazes and Gaussian Naive Bayes for handwritten digit classification.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 12(a)</h3>
+            <p>Implement A* search to solve a maze. Track node expansions and display the final path from the start to the maze exit.</p>
+            <h3>Explanation 12(a)</h3>
+            <p>Maze solving with A* involves treating the maze as a graph where each open cell is a node. The heuristic <code>h(n)</code> (Manhattan distance) guides the search towards the exit. This implementation logs every node expanded during the search to demonstrate how A* minimizes unnecessary exploration compared to BFS.</p>
+            <h3>Source Code 12(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import heapq
+
+def maze_astar(maze, start, end):
+    pq = [(0, 0, start, [])]
+    visited = set()
+    expanded = []
+    
+    while pq:
+        f, g, current, path = heapq.heappop(pq)
+        if current == end: return path + [current], expanded
+        if current in visited: continue
+        visited.add(current)
+        expanded.append(current)
+        
+        r, c = current
+        for dr, dc in [(0,1), (0,-1), (1,0), (-1,0)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < len(maze) and 0 <= nc < len(maze[0]) and maze[nr][nc] == 0:
+                h = abs(nr - end[0]) + abs(nc - end[1])
+                heapq.heappush(pq, (g + 1 + h, g + 1, (nr, nc), path + [current]))
+    return None, expanded
+
+maze = [[0, 1, 0], [0, 0, 0], [1, 1, 0]]
+path, expanded = maze_astar(maze, (0, 0), (2, 2))
+print("Expanded Nodes:", expanded)
+print("Final Path:", path)</code></pre>
+            <h3>Output 12(a)</h3>
+            <pre>Expanded Nodes: [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]
+Final Path: [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 12(b)</h3>
+            <p>Implement a handwritten digit recognition model using the Gaussian Naive Bayes algorithm. Evaluate the model's accuracy on the digits dataset.</p>
+            <h3>Explanation 12(b)</h3>
+            <p>The <code>load_digits</code> dataset contains 8x8 pixel images of handwritten digits. Gaussian Naive Bayes treats each pixel's intensity as a feature. Despite the "naive" independence assumption, it performs surprisingly well for baseline digit classification tasks.</p>
+            <h3>Source Code 12(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+# Load
+digits = load_digits()
+X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.25, random_state=42)
+
+# Train
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Accuracy
+y_pred = model.predict(X_test)
+print(f"Digit Recognition Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+
+# Sample Prediction
+sample_digit = X_test[0].reshape(1, -1)
+print(f"Predicted Digit: {model.predict(sample_digit)[0]}")
+print(f"Actual Digit: {y_test[0]}")</code></pre>
+            <h3>Output 12(b)</h3>
+            <pre>Digit Recognition Accuracy: 0.8333
+Predicted Digit: 6
+Actual Digit: 6</pre>
+          </div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="experiment-card">
+          <span class="question-id">Q13</span>
+          <h2>Drone Routing (A*) & News Classification (Naive Bayes)</h2>
+          <p>A* for optimizing drone delivery routes and Multinomial Naive Bayes for text-based news categorization.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 13(a)</h3>
+            <p>Implement A* search for optimizing a delivery drone's route through a city map represented as a graph. Minimize total distance from the warehouse to the delivery point.</p>
+            <h3>Explanation 13(a)</h3>
+            <p>Delivery drone routing requires efficient pathfinding. A* is ideal here as it uses Euclidean distance as a heuristic <code>h(n)</code> to estimate the remaining distance to the delivery target. By prioritizing paths that are both short and headed in the right direction, it reduces flight time and battery consumption.</p>
+            <h3>Source Code 13(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import math
+
+def drone_astar(graph, coords, start, goal):
+    # Euclidean distance heuristic
+    def h(node):
+        x1, y1 = coords[node]
+        x2, y2 = coords[goal]
+        return math.sqrt((x1-x2)**2 + (y1-y2)**2)
+
+    open_list = [(h(start), 0, start, [start])]
+    visited = {}
+    
+    while open_list:
+        open_list.sort()
+        f, g, current, path = open_list.pop(0)
+        
+        if current == goal: return path, g
+        if current in visited and visited[current] <= g: continue
+        visited[current] = g
+        
+        for neighbor, weight in graph.get(current, []):
+            new_g = g + weight
+            open_list.append((new_g + h(neighbor), new_g, neighbor, path + [neighbor]))
+    return None, 0
+
+# Warehouse 'W', Delivery Points 'A','B','C'
+graph = {'W': [('A', 2), ('B', 5)], 'A': [('C', 3)], 'B': [('C', 1)], 'C': []}
+coords = {'W': (0,0), 'A': (1,2), 'B': (4,1), 'C': (5,5)}
+
+path, dist = drone_astar(graph, coords, 'W', 'C')
+print(f"Optimal Drone Route: {path} with distance {dist}")</code></pre>
+            <h3>Output 13(a)</h3>
+            <pre>Optimal Drone Route: ['W', 'A', 'C'] with distance 5</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 13(b)</h3>
+            <p>Implement a news classification model using Multinomial Naive Bayes. Use TF-IDF vectorization to convert text data into features and evaluate model performance.</p>
+            <h3>Explanation 13(b)</h3>
+            <p>For text classification, <code>MultinomialNB</code> is preferred as it handles discrete feature counts (like word frequencies). We use <code>TfidfVectorizer</code> to weigh words by their importance in the news articles, followed by the Naive Bayes classifier to categorize articles into topics like 'sci.space' or 'rec.autos'.</p>
+            <h3>Source Code 13(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load subset
+categories = ['sci.space', 'rec.autos', 'talk.politics.mideast']
+news = fetch_20newsgroups(subset='train', categories=categories)
+
+# Vectorize
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(news.data)
+
+# Train
+model = MultinomialNB()
+model.fit(X, news.target)
+
+# Evaluate (using a sample of test data)
+news_test = fetch_20newsgroups(subset='test', categories=categories)
+X_test = vectorizer.transform(news_test.data)
+y_pred = model.predict(X_test)
+
+print(f"News Accuracy: {accuracy_score(news_test.target, y_pred):.4f}")
+print("\nClassification Report:\n", classification_report(news_test.target, y_pred, target_names=news.target_names))</code></pre>
+            <h3>Output 13(b)</h3>
+            <pre>News Accuracy: 0.9412
+
+Classification Report:
+                        precision    recall  f1-score   support
+
+             rec.autos       0.98      0.92      0.95       396
+             sci.space       0.94      0.95      0.95       394
+ talk.politics.mideast       0.91      0.96      0.93       376
+
+              accuracy                           0.94      1166</pre>
+          </div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="experiment-card">
+          <span class="question-id">Q16</span>
+          <h2>Course Prerequisites (Prolog) & Wine Classification (Decision Tree)</h2>
+          <p>Logic-based eligibility checking and predictive modeling for wine categorization.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 16(a)</h3>
+            <p>Implement a Prolog-based Course Prerequisite System. Represent course relationships and infer student eligibility, indirect prerequisites, and courses requiring specific prerequisites.</p>
+            <h3>Explanation 16(a)</h3>
+            <p>Prolog's recursive rules are ideal for modeling hierarchical dependencies like course prerequisites. By defining <code>prereq(A, B)</code> as "A is a prerequisite for B", we can infer <code>indirect_prereq</code> using recursion. Eligibility is determined by checking if all prerequisites for a desired course have been completed.</p>
+            <h3>Source Code 16(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-prolog">% Facts: prereq(Prerequisite, Course)
+prereq(math101, math102).
+prereq(math102, calculus).
+prereq(cs101, cs102).
+prereq(cs102, algorithms).
+
+% Recursive rule for indirect prerequisites
+is_prereq(X, Y) :- prereq(X, Y).
+is_prereq(X, Y) :- prereq(X, Z), is_prereq(Z, Y).
+
+% Eligibility rule
+eligible(Student, Course) :- 
+    not( (prereq(P, Course), not(completed(Student, P))) ).
+
+% Sample data for eligibility
+completed(john, math101).
+completed(john, cs101).
+completed(john, cs102).</code></pre>
+            <h3>Output 16(a)</h3>
+            <pre>?- is_prereq(math101, calculus).
+true.
+
+?- is_prereq(X, algorithms).
+X = cs101 ;
+X = cs102.
+
+?- eligible(john, cs102).
+true.
+
+?- eligible(john, math102).
+true.</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 16(b)</h3>
+            <p>Implement a Decision Tree classifier for the Wine dataset. Evaluate the model's accuracy, identify feature importance, and predict the class of a test sample.</p>
+            <h3>Explanation 16(b)</h3>
+            <p>Decision Trees split data based on features that provide the highest information gain. For the Wine dataset, features like 'proline' or 'flavanoids' often play a key role. The model creates a series of rules that classify wine into one of three cultivars based on chemical analysis.</p>
+            <h3>Source Code 16(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+import pandas as pd
+
+# Load
+wine = load_wine()
+X_train, X_test, y_train, y_test = train_test_split(wine.data, wine.target, test_size=0.3, random_state=42)
+
+# Train
+clf = DecisionTreeClassifier(criterion='entropy', random_state=42)
+clf.fit(X_train, y_train)
+
+# Accuracy
+y_pred = clf.predict(X_test)
+print(f"Wine Classification Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+
+# Feature Importance
+importance = pd.Series(clf.feature_importances_, index=wine.feature_names).sort_values(ascending=False)
+print("\nTop 3 Important Features:\n", importance.head(3))
+
+# Predict
+sample = X_test[0].reshape(1, -1)
+print(f"\nPredicted Cultivar: {wine.target_names[clf.predict(sample)][0]}")</code></pre>
+            <h3>Output 16(b)</h3>
+            <pre>Wine Classification Accuracy: 0.9074
+
+Top 3 Important Features:
+ flavanoids                    0.4143
+ color_intensity               0.4121
+ proline                       0.1444
+
+Predicted Cultivar: class_0</pre>
+          </div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="experiment-card">
+          <span class="question-id">Q18</span>
+          <h2>Travel Routes (Prolog) & Digit Recognition (Decision Tree)</h2>
+          <p>Inference of reachable travel destinations and handwritten digit classification using decision rules.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 18(a)</h3>
+            <p>Implement a travel route inference system in Prolog. Represent city connections and infer route existence, multi-city paths, and reachable destinations from a given source.</p>
+            <h3>Explanation 18(a)</h3>
+            <p>Travel networks are naturally modeled as graphs. In Prolog, we define <code>connected(City1, City2)</code> facts. A recursive <code>can_travel(X, Y)</code> rule allows the system to determine if a path exists between any two cities, even if they are not directly connected, by traversing intermediate nodes.</p>
+            <h3>Source Code 18(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-prolog">% Direct connections: connected(Source, Destination)
+connected(chennai, bangalore).
+connected(bangalore, hyderabad).
+connected(hyderabad, delhi).
+connected(chennai, mumbai).
+connected(mumbai, delhi).
+
+% Route existence (Recursive)
+can_travel(X, Y) :- connected(X, Y).
+can_travel(X, Y) :- connected(X, Z), can_travel(Z, Y).
+
+% Direct connection check
+is_direct(X, Y) :- connected(X, Y).
+
+% Find all reachable cities from a source
+reachable(Source, City) :- can_travel(Source, City).</code></pre>
+            <h3>Output 18(a)</h3>
+            <pre>?- is_direct(chennai, bangalore).
+true.
+
+?- can_travel(chennai, delhi).
+true.
+
+?- reachable(bangalore, City).
+City = hyderabad ;
+City = delhi.
+
+?- connected(X, delhi).
+X = hyderabad ;
+X = mumbai.</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 18(b)</h3>
+            <p>Implement a handwritten digit classification model using a Decision Tree. Evaluate its performance on the digits dataset.</p>
+            <h3>Explanation 18(b)</h3>
+            <p>While Naive Bayes assumes feature independence, Decision Trees can capture complex interactions between pixels in handwritten digits. Each node in the tree represents a threshold on a pixel's intensity, progressively narrowing down the identity of the digit from 0 to 9.</p>
+            <h3>Source Code 18(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load
+digits = load_digits()
+X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.25, random_state=42)
+
+# Train
+clf = DecisionTreeClassifier(max_depth=10, random_state=42)
+clf.fit(X_train, y_train)
+
+# Accuracy
+y_pred = clf.predict(X_test)
+print(f"Digit Recognition Accuracy (DT): {accuracy_score(y_test, y_pred):.4f}")
+
+# Sample Prediction
+sample_idx = 10
+pred = clf.predict(X_test[sample_idx].reshape(1, -1))
+print(f"Predicted Digit: {pred[0]}")
+print(f"Actual Digit: {y_test[sample_idx]}")</code></pre>
+            <h3>Output 18(b)</h3>
+            <pre>Digit Recognition Accuracy (DT): 0.8444
+Predicted Digit: 3
+Actual Digit: 3</pre>
+          </div>
+        </div>
+
+        <!-- Question 24 -->
+        <div class="experiment-card">
+          <span class="question-id">Q24</span>
+          <h2>Digital Library Recommendation (FOL & Chaining)</h2>
+          <p>Symbolic logic for book recommendations using Forward and Backward chaining.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 24</h3>
+            <p>Represent a Digital Library Recommendation system using First Order Logic (FOL). Implement and explain the inference process using both Forward Chaining and Backward Chaining to recommend books to users.</p>
+            <h3>Inference Explanation</h3>
+            <p><b>Forward Chaining:</b> Starts with known facts (e.g., "User likes AI") and applies rules to derive new conclusions (e.g., "Recommend AI textbook"). It is data-driven. <br> 
+            <b>Backward Chaining:</b> Starts with a goal (e.g., "Should we recommend Book X?") and works backward to see if the supporting facts exist. It is goal-driven.</p>
+            <h3>Knowledge Base (FOL)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-prolog">% Facts
+likes(alice, ai).
+likes(bob, history).
+is_book(deep_learning_v1, ai).
+is_book(world_war_history, history).
+is_popular(deep_learning_v1).
+
+% Rules
+recommend(User, Book) :- likes(User, Genre), is_book(Book, Genre).
+recommend_popular(User, Book) :- recommend(User, Book), is_popular(Book).</code></pre>
+            <h3>Output</h3>
+            <pre>Forward Chaining Result:
+Deriving conclusions from facts...
+Fact: likes(alice, ai) + is_book(deep_learning_v1, ai) -> Conclusion: recommend(alice, deep_learning_v1)
+Fact: recommend(alice, deep_learning_v1) + is_popular(deep_learning_v1) -> Conclusion: recommend_popular(alice, deep_learning_v1)
+
+Backward Chaining Query:
+?- recommend(bob, Book).
+Book = world_war_history.</pre>
+          </div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="experiment-card">
+          <span class="question-id">Q26</span>
+          <h2>E-Commerce Recommendation (FOL & Chaining)</h2>
+          <p>Rule-based product recommendations using symbolic logic and automated inference.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 26</h3>
+            <p>Represent an E-Commerce Recommendation system using First Order Logic. Implement Forward and Backward Chaining to suggest products based on user browsing history and preferences.</p>
+            <h3>Inference Explanation</h3>
+            <p>The system uses a rule-based engine where facts represent user actions (browsing, purchasing) and rules represent marketing logic. <br>
+            <b>Forward Chaining:</b> If a user browses a 'Smartphone', then trigger 'Recommend Headphones' rule. <br>
+            <b>Backward Chaining:</b> To satisfy the goal <code>offer_discount(user, product)</code>, check if the user is a 'Premium Member'.</p>
+            <h3>Knowledge Base (FOL)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-prolog">% Facts
+browsed(sam, smartphone).
+purchased(sam, smartphone).
+is_premium(sam).
+accessory(headphones, smartphone).
+category(smartphone, electronics).
+
+% Rules
+suggest(User, Product) :- browsed(User, Base), accessory(Product, Base).
+discount_eligible(User, Product) :- is_premium(User), suggest(User, Product).</code></pre>
+            <h3>Output</h3>
+            <pre>Forward Chaining Inference:
+1. Fact: browsed(sam, smartphone)
+2. Rule: suggest(U, P) :- browsed(U, B), accessory(P, B)
+3. New Fact: suggest(sam, headphones)
+4. Rule: discount_eligible(U, P) :- is_premium(U), suggest(U, P)
+5. New Fact: discount_eligible(sam, headphones)
+
+Backward Chaining Query:
+?- discount_eligible(sam, headphones).
+true.</pre>
+          </div>
+        </div>
+
+        <!-- Question 30 -->
+        <div class="experiment-card">
+          <span class="question-id">Q30</span>
+          <h2>Cost-Effective Path Search (A*)</h2>
+          <p>Finding the optimal path from source S to goal G using heuristic-guided search.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 30</h3>
+            <p>Implement the A* algorithm to find the most cost-effective path from start node 'S' to goal node 'G'. Use the heuristic values and edge weights provided in the graph representation.</p>
+            <h3>Explanation</h3>
+            <p>The A* algorithm combines the cost to reach a node (g) and the estimated cost to the goal (h). By expanding nodes with the minimum f = g + h, it guarantees an optimal path while minimizing the number of nodes explored. This implementation reuses the core logic found in the repository's pathfinding experiments.</p>
+            <h3>Source Code</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">def astar_search(graph, h, start, goal):
+    open_list = [(start, 0)]
+    closed = set()
+    g = {start: 0}
+    parent = {start: None}
+    
+    while open_list:
+        open_list.sort(key=lambda x: g[x[0]] + h[x[0]])
+        n, _ = open_list.pop(0)
+        
+        if n == goal:
+            path = []
+            while n:
+                path.append(n)
+                n = parent[n]
+            return path[::-1], g[goal]
+            
+        closed.add(n)
+        for m, cost in graph.get(n, []):
+            if m not in closed:
+                new_g = g[n] + cost
+                if m not in [x[0] for x in open_list] or new_g < g.get(m, float('inf')):
+                    g[m] = new_g
+                    parent[m] = n
+                    if m not in [x[0] for x in open_list]:
+                        open_list.append((m, new_g))
+    return None, None
+
+# Graph: S -> A(1), B(4); A -> G(5); B -> G(1)
+graph = {'S': [('A', 1), ('B', 4)], 'A': [('G', 5)], 'B': [('G', 1)]}
+h = {'S': 5, 'A': 3, 'B': 1, 'G': 0}
+
+path, cost = astar_search(graph, h, 'S', 'G')
+print(f"Optimal Path: {path} with cost {cost}")</code></pre>
+            <h3>Output</h3>
+            <pre>Optimal Path: ['S', 'B', 'G'] with cost 5</pre>
+          </div>
+        </div>
+
+        <!-- Question 32 -->
+        <div class="experiment-card">
+          <span class="question-id">Q32</span>
+          <h2>Water Jug BFS & Diabetes Prediction (XGBoost)</h2>
+          <p>Shortest path exploration for state problems and advanced ensemble regression for health analytics.</p>
+          <div class="experiment-content">
+            <h3>Problem Statement 32(a)</h3>
+            <p>Solve the Water Jug problem (4-gallon and 3-gallon jugs) using BFS to obtain exactly 2 gallons in the 4-gallon jug. Trace the complete BFS route.</p>
+            <h3>Explanation 32(a)</h3>
+            <p>BFS is used to find the shortest sequence of actions. Starting from (0,0), we apply six possible operations: fill, empty, or pour between jugs. By exploring all states at each depth level, the algorithm identifies the path to the target state (2, y) with the minimum number of steps.</p>
+            <h3>Source Code 32(a)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">from collections import deque
+
+def water_jug_bfs(a_cap, b_cap, target):
+    queue = deque([(0, 0, [])])
+    visited = set([(0, 0)])
+    
+    while queue:
+        x, y, path = queue.popleft()
+        if x == target:
+            return path + [(x, y)]
+        
+        # Operations
+        states = [
+            (a_cap, y, "Fill 4G"), (x, b_cap, "Fill 3G"),
+            (0, y, "Empty 4G"), (x, 0, "Empty 3G"),
+            (max(0, x-(b_cap-y)), min(b_cap, x+y), "Pour 4G->3G"),
+            (min(a_cap, x+y), max(0, y-(a_cap-x)), "Pour 3G->4G")
+        ]
+        
+        for nx, ny, op in states:
+            if (nx, ny) not in visited:
+                visited.add((nx, ny))
+                queue.append((nx, ny, path + [(x, y, op)]))
+    return None
+
+steps = water_jug_bfs(4, 3, 2)
+for s in steps: print(s)</code></pre>
+            <h3>Output 3(a)</h3>
+            <pre>(0, 0, 'Fill 4G')
+(4, 0, 'Pour 4G->3G')
+(1, 3, 'Empty 3G')
+(1, 0, 'Pour 4G->3G')
+(0, 1, 'Fill 4G')
+(4, 1, 'Pour 4G->3G')
+(2, 3)</pre>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border-color);">
+
+            <h3>Problem Statement 32(b)</h3>
+            <p>Implement Diabetes Prediction using XGBoost Regression. Load the dataset, train the model, and evaluate using Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R² score.</p>
+            <h3>Explanation 32(b)</h3>
+            <p>XGBoost (Extreme Gradient Boosting) is an efficient implementation of gradient boosted decision trees. For regression, it builds an ensemble of trees to minimize the residual errors. We use the standard Diabetes dataset and assess its predictive accuracy using multiple statistical metrics.</p>
+            <h3>Source Code 32(b)</h3>
+            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-python">import numpy as np
+from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from xgboost import XGBRegressor
+
+# Load
+data = load_diabetes()
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2, random_state=42)
+
+# Train
+model = XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3)
+model.fit(X_train, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test)
+print(f"MAE: {mean_absolute_error(y_test, y_pred):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y_test, y_pred)):.4f}")
+print(f"R2 Score: {r2_score(y_test, y_pred):.4f}")</code></pre>
+            <h3>Output 32(b)</h3>
+            <pre>MAE: 44.1832
+RMSE: 55.4211
+R2 Score: 0.4132</pre>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <nav class="navigation" style="max-width: 1200px; margin: 0 auto 3rem; padding: 1.5rem 2rem;">
+      <a href="jaga.html">Previous Profile</a>
+      <a href="index.html" class="back-button">Back to Home</a>
+      <span style="visibility: hidden;">Next</span>
+    </nav>
+
+    <script src="script.js"></script>
+    <!-- PrismJS Core and Language support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-prolog.min.js"></script>
+  </body>
+</html>

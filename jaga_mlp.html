@@ -30,8 +30,10 @@ import seaborn as sns
 
 # Load dataset
 categories = ['sci.space', 'rec.sport.hockey', 'comp.graphics']
-data = fetch_20newsgroups()
-
+data = fetch_20newsgroups(
+    subset='train',
+    categories=categories
+)
 X = data.data
 y = data.target
 

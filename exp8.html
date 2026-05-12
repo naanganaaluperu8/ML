@@ -74,92 +74,60 @@
       <h3>PROGRAM</h3>
       <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
       <pre><code class="language-python"># -----------------------------
-# 1. Import Libraries
-# -----------------------------
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-from sklearn import datasets
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report
+import seaborn as sns
+import matplotlib.pyplot as plt
 
+# Load dataset as DataFrame
+data = load_iris(as_frame=True)
+df = data.frame
 
-# -----------------------------
-# 2. Load Dataset
-# -----------------------------
-iris = datasets.load_iris()
+# Features and target
+X = df.drop('target', axis=1)
+y = df['target']
 
-df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df["species"] = [iris.target_names[i] for i in iris.target]
-
-print("First five rows of the Iris dataset:\n")
-print(df.head())
-
-
-# -----------------------------
-# 3. Train-Test Split
-# -----------------------------
+# Split
 X_train, X_test, y_train, y_test = train_test_split(
-    iris.data,
-    iris.target,
-    test_size=0.3,
-    random_state=42
+    X, y, test_size=0.3, random_state=42
 )
 
-
-# -----------------------------
-# 4. Train Model
-# -----------------------------
+# Train model
 model = GaussianNB()
 model.fit(X_train, y_train)
 
-
-# -----------------------------
-# 5. Simple Visualization
-# -----------------------------
-sns.set_style("whitegrid")
-
-# Instead of pairplot (which is heavy),
-# use a simple scatter plot for clarity
-plt.figure(figsize=(6, 4))
-
-sns.scatterplot(
-    x=df["sepal length (cm)"],
-    y=df["sepal width (cm)"],
-    hue=df["species"],
-    palette="viridis"
-)
-
-plt.title("Sepal Length vs Width by Species")
-plt.xlabel("Sepal Length")
-plt.ylabel("Sepal Width")
-plt.legend(title="Species")
-
-plt.tight_layout()
-plt.show()
-
-
-# -----------------------------
-# 6. Predictions & Evaluation
-# -----------------------------
+# Predict
 y_pred = model.predict(X_test)
 
-print(f"\nModel Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+# Accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
 
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred, target_names=iris.target_names))
+# Classification report
+print(classification_report(
+    y_test,
+    y_pred,
+    target_names=data.target_names
+))
 
+# Add species names for graph
+df['species'] = df['target'].map({
+    0: data.target_names[0],
+    1: data.target_names[1],
+    2: data.target_names[2]
+})
 
-# -----------------------------
-# 7. Test with New Sample
-# -----------------------------
+# Pairplot
+sns.pairplot(df, hue="species")
+plt.show()
+
+# Test sample
 new_sample = [[5.1, 3.5, 1.4, 0.2]]
-
 prediction = model.predict(new_sample)
 
-print(f"\nPredicted Class for sample {new_sample}: {iris.target_names[prediction][0]}")</code></pre>
+print("Predicted class:",
+      data.target_names[prediction][0])</code></pre>
       <h3>SAMPLE INPUT AND OUTPUT</h3>
       <pre>
 First five rows of the Iris dataset:

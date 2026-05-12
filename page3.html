@@ -198,27 +198,124 @@ for step in result:
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-X = np.array([[1], [2], [3], [4], [5], [6], [8], [10]])
-y = np.array([30000, 40000, 50000, 60000, 70000, 80000, 95000, 110000])
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# ==========================================
+# CREATE DATASET
+# ==========================================
+
+data = {
+    'Experience': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Salary': [25000, 30000, 35000, 40000, 50000,
+               55000, 60000, 65000, 70000, 80000]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset:\n")
+
+print(df)
+
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+X = df[['Experience']]
+
+y = df['Salary']
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
 
 model = LinearRegression()
-model.fit(X, y)
-y_pred = model.predict(X)
 
-print("MSE:", mean_squared_error(y, y_pred))
-print("R2 Score:", r2_score(y, y_pred))
-print("Predicted Salary for 7 years:", model.predict([[7]])[0])
+model.fit(X_train, y_train)
 
-plt.scatter(X, y, color='blue')
-plt.plot(X, model.predict(X), color='red')
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+mse = mean_squared_error(y_test, y_pred)
+
+r2 = r2_score(y_test, y_pred)
+
+print("\nMean Squared Error:", mse)
+
+print("R2 Score:", r2)
+
+
+# ==========================================
+# REGRESSION LINE PLOT
+# ==========================================
+
+plt.figure(figsize=(8,6))
+
+# Actual points
+plt.scatter(
+    X,
+    y,
+    label="Actual Data"
+)
+
+# Regression line
+plt.plot(
+    X,
+    model.predict(X),
+    'r'
+)
+
 plt.xlabel("Years of Experience")
+
 plt.ylabel("Salary")
+
 plt.title("Experience vs Salary")
-plt.show()</code></pre>
+
+plt.show()
+
+
+# ==========================================
+# PREDICT NEW SALARY
+# ==========================================
+
+new_experience = [[7]]
+
+predicted_salary = model.predict(new_experience)
+
+print("\nPredicted Salary for 7 Years Experience:")
+
+print(predicted_salary[0])</code></pre>
         <h3>Output</h3>
         <pre>MSE: 7447916.6667
 R2 Score: 0.9941
@@ -273,23 +370,93 @@ Final: (2, 3)</pre>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-X = np.array([
-    [1.2, 900],
-    [1.4, 1000],
-    [1.6, 1100],
-    [1.8, 1200],
-    [2.0, 1300]
-])
-y = np.array([24, 22, 20, 18, 16])
+import pandas as pd
+
+
+# ==========================================
+# CREATE DATASET
+# ==========================================
+
+data = {
+    'Engine_Size': [1000, 1200, 1400, 1600, 1800,
+                    2000, 2200, 2500, 2800, 3000],
+
+    'Weight': [800, 850, 900, 1000, 1100,
+               1200, 1300, 1400, 1500, 1600],
+
+    'Mileage': [24, 22, 20, 18, 17,
+                15, 14, 12, 11, 10]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset:\n")
+
+print(df)
+
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+X = df[['Engine_Size', 'Weight']]
+
+y = df['Mileage']
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
 
 model = LinearRegression()
-model.fit(X, y)
-y_pred = model.predict(X)
 
-print("R2 Score:", r2_score(y, y_pred))
-print("Predicted mileage for new car:", model.predict([[1.7, 1150]])[0])</code></pre>
+model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+r2 = r2_score(y_test, y_pred)
+
+print("\nR2 Score:", r2)
+
+
+# ==========================================
+# PREDICT NEW CAR MILEAGE
+# ==========================================
+
+new_car = [[1500, 950]]
+
+predicted_mileage = model.predict(new_car)
+
+print("\nPredicted Mileage for New Car:")
+
+print(predicted_mileage[0])</code></pre>
         <h3>Output</h3>
         <pre>R2 Score: 1.0
 Predicted mileage for new car: 19.0</pre>
@@ -346,25 +513,91 @@ else:
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
 
-x = np.array([10, 20, 30, 40, 50], dtype=float)
-y = np.array([25, 40, 50, 65, 80], dtype=float)
+import numpy as np
 
-mx = np.mean(x)
-my = np.mean(y)
+# ==========================================
+# DATASET
+# ==========================================
 
-b1 = np.sum((x - mx) * (y - my)) / np.sum((x - mx) ** 2)
-b0 = my - b1 * mx
+X = np.array([10, 20, 30, 40, 50])
 
-print("Slope:", b1)
-print("Intercept:", b0)
+Y = np.array([25, 40, 50, 65, 80])
 
-pred60 = b0 + b1 * 60
-print("Predicted sales for budget 60:", pred60)
 
-actual50 = 80
-pred50 = b0 + b1 * 50
-error50 = actual50 - pred50
-print("Prediction error at budget 50:", error50)</code></pre>
+# ==========================================
+# CALCULATE MEAN
+# ==========================================
+
+mean_x = np.mean(X)
+
+mean_y = np.mean(Y)
+
+print("Mean of X:", mean_x)
+
+print("Mean of Y:", mean_y)
+
+
+# ==========================================
+# CALCULATE SLOPE (m)
+# ==========================================
+
+numerator = np.sum(
+    (X - mean_x) * (Y - mean_y)
+)
+
+denominator = np.sum(
+    (X - mean_x) ** 2
+)
+
+m = numerator / denominator
+
+print("\nSlope (m):", m)
+
+
+# ==========================================
+# CALCULATE INTERCEPT (b)
+# ==========================================
+
+b = mean_y - (m * mean_x)
+
+print("Intercept (b):", b)
+
+
+# ==========================================
+# LINEAR REGRESSION EQUATION
+# ==========================================
+
+print("\nRegression Equation:")
+
+print(f"Y = {m:.2f}X + {b:.2f}")
+
+
+# ==========================================
+# PREDICT SALES FOR BUDGET = 60
+# ==========================================
+
+new_budget = 60
+
+predicted_sales = (m * new_budget) + b
+
+print("\nPredicted Sales for Budget 60:")
+
+print(predicted_sales)
+
+
+# ==========================================
+# CALCULATE PREDICTION ERROR
+# ==========================================
+
+# Predicted values for existing dataset
+Y_pred = (m * X) + b
+
+# Mean Squared Error
+mse = np.mean((Y - Y_pred) ** 2)
+
+print("\nMean Squared Error:")
+
+print(mse)</code></pre>
         <h3>Output</h3>
         <pre>Slope: 1.35
 Intercept: 11.5
@@ -424,27 +657,123 @@ for p in path:
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-X = np.array([[20], [22], [25], [28], [30], [32]])
-y = np.array([120, 140, 170, 200, 230, 260])
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# ==========================================
+# CREATE DATASET
+# ==========================================
+
+data = {
+    'Temperature': [20, 22, 25, 28, 30, 32, 34, 36, 38, 40],
+
+    'Sales': [100, 120, 150, 180, 200,
+              220, 250, 270, 300, 320]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset:\n")
+
+print(df)
+
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+X = df[['Temperature']]
+
+y = df['Sales']
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
 
 model = LinearRegression()
-model.fit(X, y)
-y_pred = model.predict(X)
 
-print("MSE:", mean_squared_error(y, y_pred))
-print("R2 Score:", r2_score(y, y_pred))
-print("Predicted sales at 35C:", model.predict([[35]])[0])
+model.fit(X_train, y_train)
 
-plt.scatter(X, y, color='blue')
-plt.plot(X, model.predict(X), color='red')
-plt.xlabel("Temperature")
-plt.ylabel("Sales")
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+mse = mean_squared_error(y_test, y_pred)
+
+r2 = r2_score(y_test, y_pred)
+
+print("\nMean Squared Error:", mse)
+
+print("R2 Score:", r2)
+
+
+# ==========================================
+# VISUALIZATION
+# ==========================================
+
+plt.figure(figsize=(8,6))
+
+# Actual points
+plt.scatter(
+    X,
+    y
+)
+
+# Regression line
+plt.plot(
+    X,
+    model.predict(X),
+    'r'
+)
+
+plt.xlabel("Temperature (°C)")
+
+plt.ylabel("Ice Cream Sales")
+
 plt.title("Temperature vs Ice Cream Sales")
-plt.show()</code></pre>
+
+plt.show()
+
+
+# ==========================================
+# PREDICT NEW VALUE
+# ==========================================
+
+new_temperature = [[35]]
+
+predicted_sales = model.predict(new_temperature)
+
+print("\nPredicted Sales for 35°C:")
+
+print(predicted_sales[0])</code></pre>
         <h3>Output</h3>
         <pre>MSE: 10.4762
 R2 Score: 0.9981
@@ -684,25 +1013,140 @@ print("Path:", path)</code></pre>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, precision_score, recall_score
 
-data = load_breast_cancer()
-X_train, X_test, y_train, y_test = train_test_split(
-    data.data, data.target, test_size=0.25, random_state=42
+from sklearn.model_selection import train_test_split
+
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    classification_report,
+    confusion_matrix
 )
 
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# ==========================================
+# LOAD DATASET
+# ==========================================
+
+data = load_breast_cancer(as_frame=True)
+
+df = data.frame
+
+print("First 5 Rows:\n")
+
+print(df.head())
+
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+X = df.drop('target', axis=1)
+
+y = df['target']
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain-Test Split Completed")
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
+
 model = GaussianNB()
+
 model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
 y_pred = model.predict(X_test)
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Precision:", precision_score(y_test, y_pred))
-print("Recall:", recall_score(y_test, y_pred))
+print("\nPrediction Completed")
 
-pred = model.predict(X_test[0].reshape(1, -1))[0]
-print("Predicted diagnosis:", "malignant" if pred == 0 else "benign")</code></pre>
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+precision = precision_score(y_test, y_pred)
+
+recall = recall_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+print("Precision:", precision)
+
+print("Recall:", recall)
+
+print("\nClassification Report:\n")
+
+print(classification_report(
+    y_test,
+    y_pred,
+    target_names=data.target_names
+))
+
+
+# ==========================================
+# CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(6,5))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues'
+)
+
+plt.xlabel("Predicted")
+
+plt.ylabel("Actual")
+
+plt.title("Breast Cancer Confusion Matrix")
+
+plt.show()
+
+
+# ==========================================
+# NEW PATIENT PREDICTION
+# ==========================================
+
+new_patient = [X.iloc[0].values]
+
+prediction = model.predict(new_patient)
+
+print("\nPrediction for New Patient:")
+
+print(data.target_names[prediction][0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9371
 Precision: 0.9451
@@ -774,22 +1218,133 @@ Final path: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 2), (2, 3), (3, 3)]</pre>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_digits
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_digits
 
-digits = load_digits()
-X_train, X_test, y_train, y_test = train_test_split(
-    digits.data, digits.target, test_size=0.25, random_state=42
+from sklearn.model_selection import train_test_split
+
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix
 )
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+# ==========================================
+# LOAD DATASET
+# ==========================================
+
+data = load_digits()
+
+X = data.data
+
+y = data.target
+
+print("Dataset Shape:", X.shape)
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain-Test Split Completed")
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
+
 model = GaussianNB()
+
 model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
 y_pred = model.predict(X_test)
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Predicted digit:", model.predict(X_test[0].reshape(1, -1))[0])
-print("Actual digit:", y_test[0])</code></pre>
+print("\nPrediction Completed")
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+print("\nClassification Report:\n")
+
+print(classification_report(y_test, y_pred))
+
+
+# ==========================================
+# CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(8,6))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues'
+)
+
+plt.xlabel("Predicted")
+
+plt.ylabel("Actual")
+
+plt.title("Digits Confusion Matrix")
+
+plt.show()
+
+
+# ==========================================
+# PREDICT A TEST SAMPLE
+# ==========================================
+
+sample = X_test[0].reshape(1, -1)
+
+prediction = model.predict(sample)
+
+print("\nPredicted Digit:", prediction[0])
+
+
+# ==========================================
+# DISPLAY TEST IMAGE
+# ==========================================
+
+plt.figure(figsize=(4,4))
+
+plt.imshow(
+    sample.reshape(8,8),
+    cmap='gray'
+)
+
+plt.title(f"Predicted Digit: {prediction[0]}")
+
+plt.axis('off')
+
+plt.show()</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.8556
 Predicted digit: 6
@@ -864,28 +1419,154 @@ Cost: 7</pre>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import fetch_20newsgroups
+
+from sklearn.model_selection import train_test_split
+
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score, classification_report
 
-categories = ['talk.politics.misc', 'rec.sport.hockey', 'sci.space']
-train_data = fetch_20newsgroups(subset='train', categories=categories)
-test_data = fetch_20newsgroups(subset='test', categories=categories)
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix
+)
 
-vectorizer = TfidfVectorizer(stop_words='english')
-X_train = vectorizer.fit_transform(train_data.data)
-X_test = vectorizer.transform(test_data.data)
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+# ==========================================
+# LOAD DATASET
+# ==========================================
+
+categories = [
+    'talk.politics.misc',
+    'rec.sport.hockey',
+    'comp.graphics'
+]
+
+data = fetch_20newsgroups(
+    subset='train',
+    categories=categories,
+    remove=('headers', 'footers', 'quotes')
+)
+
+X = data.data
+
+y = data.target
+
+print("Dataset Loaded")
+
+print("Number of Articles:", len(X))
+
+
+# ==========================================
+# TEXT VECTORIZATION
+# ==========================================
+
+vectorizer = TfidfVectorizer(
+    stop_words='english',
+    max_features=5000
+)
+
+X_vec = vectorizer.fit_transform(X)
+
+print("\nTF-IDF Vectorization Completed")
+
+print("Vector Shape:", X_vec.shape)
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X_vec,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain-Test Split Completed")
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
 
 model = MultinomialNB()
-model.fit(X_train, train_data.target)
+
+model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
 
 y_pred = model.predict(X_test)
-print("Accuracy:", accuracy_score(test_data.target, y_pred))
-print(classification_report(test_data.target, y_pred, target_names=train_data.target_names))
 
-new_article = ["The hockey team won the final match in overtime."]
-new_pred = model.predict(vectorizer.transform(new_article))
-print("Predicted category:", train_data.target_names[new_pred][0])</code></pre>
+print("\nPrediction Completed")
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+print("\nClassification Report:\n")
+
+print(classification_report(
+    y_test,
+    y_pred,
+    target_names=data.target_names
+))
+
+
+# ==========================================
+# CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(6,5))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues'
+)
+
+plt.xlabel("Predicted")
+
+plt.ylabel("Actual")
+
+plt.title("20 Newsgroups Confusion Matrix")
+
+plt.show()
+
+
+# ==========================================
+# CLASSIFY NEW ARTICLE
+# ==========================================
+
+new_article = [
+    "The hockey team won the championship after a thrilling final match."
+]
+
+new_article_vec = vectorizer.transform(new_article)
+
+prediction = model.predict(new_article_vec)
+
+print("\nPredicted Category:")
+
+print(data.target_names[prediction][0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9265
 Predicted category: rec.sport.hockey</pre>
@@ -899,66 +1580,234 @@ Predicted category: rec.sport.hockey</pre>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-prolog">% Facts: prereq(Prerequisite, Course)
-prereq(cs101, cs102).
-prereq(cs102, ai).
-prereq(math101, math102).
-prereq(math102, ai).
+% Facts
 
-% Completed courses
-completed(anu, cs101).
-completed(anu, cs102).
-completed(anu, math101).
-completed(anu, math102).
+prerequisite(dbms, programming).
+prerequisite(ai, dbms).
+prerequisite(machine_learning, ai).
+prerequisite(os, programming).
 
-% Direct or indirect prerequisite
-is_prereq(X, Y) :- prereq(X, Y).
-is_prereq(X, Y) :- prereq(X, Z), is_prereq(Z, Y).
+completed(john, programming).
+completed(john, dbms).
+completed(alice, programming).
 
-% Eligibility
+% Rule for direct + indirect prerequisites
+
+indirect_prerequisite(Course, Prereq) :-
+    prerequisite(Course, Prereq).
+
+indirect_prerequisite(Course, Prereq) :-
+    prerequisite(Course, Intermediate),
+    indirect_prerequisite(Intermediate, Prereq).
+
+% Eligibility rule
+
 eligible(Student, Course) :-
-    \+ (prereq(P, Course), \+ completed(Student, P)).
-
-% Courses that require a specific prerequisite
-requires(Course, Prereq) :-
-    is_prereq(Prereq, Course).</code></pre>
+    indirect_prerequisite(Course, Prereq),
+    completed(Student, Prereq).</code></pre>
         <h3>Output</h3>
-        <pre>?- is_prereq(cs101, ai).
-true.
+        <pre>% 1. Find indirect prerequisites of a course
+% Example:
+% ?- indirect_prerequisite(machine_learning, X).
 
-?- eligible(anu, ai).
-true.
+% Output:
+% X = ai ;
+% X = dbms ;
+% X = programming ;
+% false.
 
-?- requires(Course, math101).
-Course = math102 ;
-Course = ai.</pre>
+
+% 2. List all courses a student is eligible to enroll in
+% Example:
+% ?- eligible(john, Course).
+
+% Output:
+% Course = dbms ;
+% Course = ai ;
+% Course = os ;
+% Course = machine_learning ;
+% false.
+
+
+% 3. Find all courses requiring a specific prerequisite
+% Example:
+% ?- indirect_prerequisite(Course, programming).
+
+% Output:
+% Course = dbms ;
+% Course = ai ;
+% Course = machine_learning ;
+% Course = os ;
+% false.</pre>
 
         <h3>Question 16(b)</h3>
         <p><b>Explanation:</b> Decision Tree model on Wine dataset with accuracy, feature importance and sample prediction.</p>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_wine
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
-import pandas as pd
 
-wine = load_wine()
-X_train, X_test, y_train, y_test = train_test_split(
-    wine.data, wine.target, test_size=0.3, random_state=42
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix
 )
 
-clf = DecisionTreeClassifier(criterion='entropy', random_state=42)
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
 
-importance = pd.Series(clf.feature_importances_, index=wine.feature_names).sort_values(ascending=False)
-print("Top Features:")
-print(importance.head(3))
+# ==========================================
+# LOAD DATASET
+# ==========================================
 
-sample = X_test[0].reshape(1, -1)
-print("Predicted class:", wine.target_names[clf.predict(sample)][0])</code></pre>
+data = load_wine(as_frame=True)
+
+df = data.frame
+
+print("First 5 Rows:\n")
+
+print(df.head())
+
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+X = df.drop('target', axis=1)
+
+y = df['target']
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain-Test Split Completed")
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
+
+model = DecisionTreeClassifier(
+    criterion='gini',
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+print("\nPrediction Completed")
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+print("\nClassification Report:\n")
+
+print(classification_report(
+    y_test,
+    y_pred,
+    target_names=data.target_names.astype(str)
+))
+
+
+# ==========================================
+# CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(6,5))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues'
+)
+
+plt.xlabel("Predicted")
+
+plt.ylabel("Actual")
+
+plt.title("Wine Dataset Confusion Matrix")
+
+plt.show()
+
+
+# ==========================================
+# FEATURE IMPORTANCE
+# ==========================================
+
+importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': model.feature_importances_
+})
+
+importance = importance.sort_values(
+    by='Importance',
+    ascending=False
+)
+
+print("\nFeature Importance:\n")
+
+print(importance)
+
+# Plot Feature Importance
+plt.figure(figsize=(10,6))
+
+sns.barplot(
+    x='Importance',
+    y='Feature',
+    data=importance
+)
+
+plt.title("Feature Importance in Decision Tree")
+
+plt.xlabel("Importance Score")
+
+plt.ylabel("Features")
+
+plt.show()
+
+
+# ==========================================
+# CLASSIFY NEW WINE SAMPLE
+# ==========================================
+
+new_sample = [X.iloc[0].values]
+
+prediction = model.predict(new_sample)
+
+print("\nPredicted Wine Class:")
+
+print(prediction[0])</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.9074
 Top Features:
@@ -1012,22 +1861,135 @@ X = mumbai.</pre>
         <h3>Code</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         <pre><code class="language-python">from sklearn.datasets import load_digits
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
 
-digits = load_digits()
-X_train, X_test, y_train, y_test = train_test_split(
-    digits.data, digits.target, test_size=0.25, random_state=42
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix
 )
 
-clf = DecisionTreeClassifier(max_depth=10, random_state=42)
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Predicted Digit:", clf.predict(X_test[10].reshape(1, -1))[0])
-print("Actual Digit:", y_test[10])</code></pre>
+
+# ==========================================
+# LOAD DATASET
+# ==========================================
+
+data = load_digits()
+
+X = data.data
+
+y = data.target
+
+print("Dataset Shape:", X.shape)
+
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain-Test Split Completed")
+
+
+# ==========================================
+# TRAIN MODEL
+# ==========================================
+
+model = DecisionTreeClassifier(
+    criterion='gini',
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+print("\nModel Training Completed")
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+print("\nPrediction Completed")
+
+
+# ==========================================
+# EVALUATION
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+print("\nClassification Report:\n")
+
+print(classification_report(y_test, y_pred))
+
+
+# ==========================================
+# CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(8,6))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues'
+)
+
+plt.xlabel("Predicted")
+
+plt.ylabel("Actual")
+
+plt.title("Digits Dataset Confusion Matrix")
+
+plt.show()
+
+
+# ==========================================
+# PREDICT DIGIT SAMPLE
+# ==========================================
+
+sample = X_test[0].reshape(1, -1)
+
+prediction = model.predict(sample)
+
+print("\nPredicted Digit:", prediction[0])
+
+
+# ==========================================
+# DISPLAY DIGIT IMAGE
+# ==========================================
+
+plt.figure(figsize=(4,4))
+
+plt.imshow(
+    sample.reshape(8,8),
+    cmap='gray'
+)
+
+plt.title(f"Predicted Digit: {prediction[0]}")
+
+plt.axis('off')
+
+plt.show()</code></pre>
         <h3>Output</h3>
         <pre>Accuracy: 0.8444
 Predicted Digit: 3
